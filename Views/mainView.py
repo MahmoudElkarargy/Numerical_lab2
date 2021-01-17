@@ -13,58 +13,58 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(960, 600)
+        MainWindow.resize(990, 620)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet("background-color: rgb(0, 0, 40)")
         self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
         self.label = QtWidgets.QLabel(self.centralWidget)
-        self.label.setGeometry(QtCore.QRect(285, 20, 390, 60))
+        self.label.setGeometry(QtCore.QRect(270, 20, 411, 60))
         self.label.setStyleSheet("background: transparent;\n"
 "color: rgb(166, 203, 255);\n"
 "margin: 5px;\n"
-"font-size: 36px;\n"
+"font-size: 38px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralWidget)
-        self.label_2.setGeometry(QtCore.QRect(30, 90, 111, 31))
+        self.label_2.setGeometry(QtCore.QRect(30, 90, 131, 31))
         self.label_2.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
-"font-size: 18px;\n"
+"font-size: 24px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
         self.label_2.setObjectName("label_2")
         self.checkBox = QtWidgets.QCheckBox(self.centralWidget)
-        self.checkBox.setGeometry(QtCore.QRect(270, 100, 191, 21))
+        self.checkBox.setGeometry(QtCore.QRect(250, 100, 211, 31))
         self.checkBox.setStyleSheet("outline: none;\n"
 "background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
-"font-size: 16px;\n"
+"font-size: 18px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.checkBox.setObjectName("checkBox")
         self.line = QtWidgets.QFrame(self.centralWidget)
-        self.line.setGeometry(QtCore.QRect(40, 120, 100, 2))
+        self.line.setGeometry(QtCore.QRect(40, 120, 119, 2))
         self.line.setStyleSheet("background-color:  rgb(234, 255, 253);")
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.groupBox = QtWidgets.QGroupBox(self.centralWidget)
-        self.groupBox.setGeometry(QtCore.QRect(40, 140, 451, 421))
+        self.groupBox.setGeometry(QtCore.QRect(40, 140, 451, 461))
         self.groupBox.setStyleSheet("background-color: rgba(152, 189, 255, 10);")
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
         self.label_4 = QtWidgets.QLabel(self.groupBox)
-        self.label_4.setGeometry(QtCore.QRect(10, 20, 191, 31))
+        self.label_4.setGeometry(QtCore.QRect(20, 20, 221, 31))
         self.label_4.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 16px;\n"
+"font-size: 18px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.label_4.setObjectName("label_4")
         self.nbOfVariables = QtWidgets.QSpinBox(self.groupBox)
-        self.nbOfVariables.setGeometry(QtCore.QRect(230, 10, 31, 41))
+        self.nbOfVariables.setGeometry(QtCore.QRect(250, 10, 31, 41))
         self.nbOfVariables.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;;\n"
 "background: transparent;\n"
@@ -74,25 +74,25 @@ class Ui_MainWindow(object):
 "text-align: center;\n"
 "")
         self.nbOfVariables.setMinimum(2)
-        self.nbOfVariables.setMaximum(8)
+        self.nbOfVariables.setMaximum(9)
         self.nbOfVariables.setProperty("value", 2)
         self.nbOfVariables.setObjectName("nbOfVariables")
         self.errorMsg = QtWidgets.QLabel(self.groupBox)
-        self.errorMsg.setGeometry(QtCore.QRect(30, 50, 351, 31))
+        self.errorMsg.setGeometry(QtCore.QRect(40, 50, 351, 31))
         self.errorMsg.setStyleSheet("background: transparent;\n"
 "color:rgb(252, 1, 7);\n"
 "font-size: 14px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.errorMsg.setObjectName("errorMsg")
         self.labelEqu1 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu1.setGeometry(QtCore.QRect(10, 90, 141, 31))
+        self.labelEqu1.setGeometry(QtCore.QRect(20, 90, 151, 31))
         self.labelEqu1.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu1.setObjectName("labelEqu1")
         self.lineEditEQ1 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ1.setGeometry(QtCore.QRect(170, 90, 241, 21))
+        self.lineEditEQ1.setGeometry(QtCore.QRect(190, 90, 241, 21))
         self.lineEditEQ1.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -102,57 +102,57 @@ class Ui_MainWindow(object):
         self.lineEditEQ1.setText("")
         self.lineEditEQ1.setObjectName("lineEditEQ1")
         self.labelEqu2 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu2.setGeometry(QtCore.QRect(10, 130, 141, 31))
+        self.labelEqu2.setGeometry(QtCore.QRect(20, 130, 161, 31))
         self.labelEqu2.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu2.setObjectName("labelEqu2")
         self.labelEqu3 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu3.setGeometry(QtCore.QRect(10, 170, 141, 31))
+        self.labelEqu3.setGeometry(QtCore.QRect(20, 170, 151, 31))
         self.labelEqu3.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu3.setInputMethodHints(QtCore.Qt.ImhNone)
         self.labelEqu3.setObjectName("labelEqu3")
         self.labelEqu4 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu4.setGeometry(QtCore.QRect(10, 210, 141, 31))
+        self.labelEqu4.setGeometry(QtCore.QRect(20, 210, 151, 31))
         self.labelEqu4.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu4.setObjectName("labelEqu4")
         self.labelEqu5 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu5.setGeometry(QtCore.QRect(10, 250, 141, 31))
+        self.labelEqu5.setGeometry(QtCore.QRect(20, 250, 151, 31))
         self.labelEqu5.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu5.setObjectName("labelEqu5")
         self.labelEqu6 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu6.setGeometry(QtCore.QRect(10, 290, 141, 31))
+        self.labelEqu6.setGeometry(QtCore.QRect(20, 290, 151, 31))
         self.labelEqu6.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu6.setObjectName("labelEqu6")
         self.labelEqu7 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu7.setGeometry(QtCore.QRect(10, 330, 141, 31))
+        self.labelEqu7.setGeometry(QtCore.QRect(20, 330, 161, 31))
         self.labelEqu7.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu7.setObjectName("labelEqu7")
         self.labelEqu8 = QtWidgets.QLabel(self.groupBox)
-        self.labelEqu8.setGeometry(QtCore.QRect(10, 370, 131, 31))
+        self.labelEqu8.setGeometry(QtCore.QRect(20, 370, 151, 31))
         self.labelEqu8.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.labelEqu8.setObjectName("labelEqu8")
         self.lineEditEQ3 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ3.setGeometry(QtCore.QRect(170, 170, 241, 21))
+        self.lineEditEQ3.setGeometry(QtCore.QRect(190, 170, 241, 21))
         self.lineEditEQ3.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -161,7 +161,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ3.setObjectName("lineEditEQ3")
         self.lineEditEQ4 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ4.setGeometry(QtCore.QRect(170, 210, 241, 21))
+        self.lineEditEQ4.setGeometry(QtCore.QRect(190, 210, 241, 21))
         self.lineEditEQ4.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -170,7 +170,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ4.setObjectName("lineEditEQ4")
         self.lineEditEQ5 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ5.setGeometry(QtCore.QRect(170, 250, 241, 21))
+        self.lineEditEQ5.setGeometry(QtCore.QRect(190, 250, 241, 21))
         self.lineEditEQ5.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -179,7 +179,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ5.setObjectName("lineEditEQ5")
         self.lineEditEQ6 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ6.setGeometry(QtCore.QRect(170, 290, 241, 21))
+        self.lineEditEQ6.setGeometry(QtCore.QRect(190, 290, 241, 21))
         self.lineEditEQ6.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -188,7 +188,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ6.setObjectName("lineEditEQ6")
         self.lineEditEQ7 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ7.setGeometry(QtCore.QRect(170, 330, 241, 21))
+        self.lineEditEQ7.setGeometry(QtCore.QRect(190, 330, 241, 21))
         self.lineEditEQ7.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -197,7 +197,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ7.setObjectName("lineEditEQ7")
         self.lineEditEQ8 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ8.setGeometry(QtCore.QRect(170, 370, 241, 21))
+        self.lineEditEQ8.setGeometry(QtCore.QRect(190, 370, 241, 21))
         self.lineEditEQ8.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -206,7 +206,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ8.setObjectName("lineEditEQ8")
         self.lineEditEQ2 = QtWidgets.QLineEdit(self.groupBox)
-        self.lineEditEQ2.setGeometry(QtCore.QRect(170, 130, 241, 21))
+        self.lineEditEQ2.setGeometry(QtCore.QRect(190, 130, 241, 21))
         self.lineEditEQ2.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -215,23 +215,39 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.lineEditEQ2.setText("")
         self.lineEditEQ2.setObjectName("lineEditEQ2")
+        self.labelEqu9 = QtWidgets.QLabel(self.groupBox)
+        self.labelEqu9.setGeometry(QtCore.QRect(20, 410, 151, 31))
+        self.labelEqu9.setStyleSheet("background: transparent;\n"
+"color: rgb(234, 255, 253);\n"
+"font-size: 16px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;")
+        self.labelEqu9.setObjectName("labelEqu9")
+        self.lineEditEQ9 = QtWidgets.QLineEdit(self.groupBox)
+        self.lineEditEQ9.setGeometry(QtCore.QRect(190, 410, 241, 21))
+        self.lineEditEQ9.setStyleSheet("border: 0;\n"
+"border-bottom: 1px solid #999;\n"
+"background: transparent;\n"
+"font-size: 12px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.lineEditEQ9.setObjectName("lineEditEQ9")
         self.label_7 = QtWidgets.QLabel(self.centralWidget)
-        self.label_7.setGeometry(QtCore.QRect(520, 90, 131, 31))
+        self.label_7.setGeometry(QtCore.QRect(520, 90, 161, 31))
         self.label_7.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
-"font-size: 18px;\n"
+"font-size: 24px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
         self.label_7.setObjectName("label_7")
         self.line_2 = QtWidgets.QFrame(self.centralWidget)
-        self.line_2.setGeometry(QtCore.QRect(530, 120, 113, 2))
+        self.line_2.setGeometry(QtCore.QRect(530, 120, 149, 2))
         self.line_2.setStyleSheet("background-color:  rgb(234, 255, 253);")
         self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.parametersGroup = QtWidgets.QGroupBox(self.centralWidget)
-        self.parametersGroup.setGeometry(QtCore.QRect(520, 140, 421, 51))
+        self.parametersGroup.setGeometry(QtCore.QRect(530, 140, 421, 51))
         self.parametersGroup.setStyleSheet("background-color: rgba(152, 189, 255, 10);")
         self.parametersGroup.setTitle("")
         self.parametersGroup.setObjectName("parametersGroup")
@@ -249,14 +265,14 @@ class Ui_MainWindow(object):
         self.maxIterations.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
         self.maxIterations.setMaximum(100000000)
         self.maxIterations.setProperty("value", 50)
         self.maxIterations.setObjectName("maxIterations")
         self.label_6 = QtWidgets.QLabel(self.parametersGroup)
-        self.label_6.setGeometry(QtCore.QRect(220, 10, 91, 31))
+        self.label_6.setGeometry(QtCore.QRect(210, 10, 91, 31))
         self.label_6.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
@@ -265,12 +281,12 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.label_6.setObjectName("label_6")
         self.Epsilon = QtWidgets.QDoubleSpinBox(self.parametersGroup)
-        self.Epsilon.setGeometry(QtCore.QRect(320, 0, 91, 41))
+        self.Epsilon.setGeometry(QtCore.QRect(310, 0, 101, 41))
         self.Epsilon.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
 "outline: none;\n"
-"font-size: 14px;\n"
+"font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
         self.Epsilon.setDecimals(6)
@@ -280,28 +296,28 @@ class Ui_MainWindow(object):
         self.Epsilon.setProperty("value", 1e-05)
         self.Epsilon.setObjectName("Epsilon")
         self.line_3 = QtWidgets.QFrame(self.centralWidget)
-        self.line_3.setGeometry(QtCore.QRect(500, 140, 3, 420))
+        self.line_3.setGeometry(QtCore.QRect(510, 140, 3, 420))
         self.line_3.setStyleSheet("background-color:  rgb(234, 255, 253);")
         self.line_3.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_3.setObjectName("line_3")
         self.label_8 = QtWidgets.QLabel(self.centralWidget)
-        self.label_8.setGeometry(QtCore.QRect(520, 200, 91, 31))
+        self.label_8.setGeometry(QtCore.QRect(520, 200, 111, 31))
         self.label_8.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
-"font-size: 18px;\n"
+"font-size: 22px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
         self.label_8.setObjectName("label_8")
         self.line_4 = QtWidgets.QFrame(self.centralWidget)
-        self.line_4.setGeometry(QtCore.QRect(530, 230, 78, 2))
+        self.line_4.setGeometry(QtCore.QRect(530, 230, 98, 2))
         self.line_4.setStyleSheet("background-color:  rgb(234, 255, 253);")
         self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_4.setObjectName("line_4")
         self.MethodsGroup = QtWidgets.QGroupBox(self.centralWidget)
-        self.MethodsGroup.setGeometry(QtCore.QRect(520, 250, 411, 91))
+        self.MethodsGroup.setGeometry(QtCore.QRect(530, 250, 421, 81))
         self.MethodsGroup.setStyleSheet("background-color: rgba(152, 189, 255, 10);")
         self.MethodsGroup.setTitle("")
         self.MethodsGroup.setObjectName("MethodsGroup")
@@ -329,7 +345,7 @@ class Ui_MainWindow(object):
         self.method.addItem("")
         self.method.addItem("")
         self.initialLabel = QtWidgets.QLabel(self.MethodsGroup)
-        self.initialLabel.setGeometry(QtCore.QRect(10, 50, 161, 31))
+        self.initialLabel.setGeometry(QtCore.QRect(10, 40, 161, 31))
         self.initialLabel.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
@@ -338,7 +354,7 @@ class Ui_MainWindow(object):
 "color: rgb(234, 255, 253);")
         self.initialLabel.setObjectName("initialLabel")
         self.initialPointsInput = QtWidgets.QLineEdit(self.MethodsGroup)
-        self.initialPointsInput.setGeometry(QtCore.QRect(180, 50, 221, 21))
+        self.initialPointsInput.setGeometry(QtCore.QRect(180, 40, 221, 21))
         self.initialPointsInput.setStyleSheet("border: 0;\n"
 "border-bottom: 1px solid #999;\n"
 "background: transparent;\n"
@@ -348,20 +364,109 @@ class Ui_MainWindow(object):
         self.initialPointsInput.setText("")
         self.initialPointsInput.setObjectName("initialPointsInput")
         self.label_10 = QtWidgets.QLabel(self.centralWidget)
-        self.label_10.setGeometry(QtCore.QRect(520, 340, 91, 31))
+        self.label_10.setGeometry(QtCore.QRect(520, 340, 111, 31))
         self.label_10.setStyleSheet("background: transparent;\n"
 "color: rgb(234, 255, 253);\n"
 "margin: 5px;\n"
-"font-size: 18px;\n"
+"font-size: 22px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
         self.label_10.setObjectName("label_10")
         self.line_5 = QtWidgets.QFrame(self.centralWidget)
-        self.line_5.setGeometry(QtCore.QRect(530, 370, 69, 2))
+        self.line_5.setGeometry(QtCore.QRect(530, 370, 97, 2))
         self.line_5.setStyleSheet("background-color:  rgb(234, 255, 253);")
         self.line_5.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_5.setObjectName("line_5")
+        self.groupBox_2 = QtWidgets.QGroupBox(self.centralWidget)
+        self.groupBox_2.setGeometry(QtCore.QRect(530, 380, 421, 221))
+        self.groupBox_2.setStyleSheet("background-color: rgba(152, 189, 255, 10);")
+        self.groupBox_2.setTitle("")
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.label_11 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_11.setGeometry(QtCore.QRect(10, 10, 181, 31))
+        self.label_11.setStyleSheet("background: transparent;\n"
+"color: rgb(234, 255, 253);\n"
+"margin: 5px;\n"
+"font-size: 16px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.label_11.setObjectName("label_11")
+        self.valuesResult1 = QtWidgets.QLineEdit(self.groupBox_2)
+        self.valuesResult1.setGeometry(QtCore.QRect(40, 40, 351, 21))
+        self.valuesResult1.setStyleSheet("border: 0;\n"
+"border-bottom: 1px solid #999;\n"
+"background: transparent;\n"
+"font-size: 14px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.valuesResult1.setText("")
+        self.valuesResult1.setObjectName("valuesResult1")
+        self.valuesResult2 = QtWidgets.QLineEdit(self.groupBox_2)
+        self.valuesResult2.setGeometry(QtCore.QRect(40, 70, 351, 21))
+        self.valuesResult2.setStyleSheet("border: 0;\n"
+"border-bottom: 1px solid #999;\n"
+"background: transparent;\n"
+"font-size: 14px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.valuesResult2.setText("")
+        self.valuesResult2.setObjectName("valuesResult2")
+        self.execTimeLabel = QtWidgets.QLabel(self.groupBox_2)
+        self.execTimeLabel.setGeometry(QtCore.QRect(10, 110, 161, 31))
+        self.execTimeLabel.setStyleSheet("background: transparent;\n"
+"color: rgb(234, 255, 253);\n"
+"margin: 5px;\n"
+"font-size: 16px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.execTimeLabel.setObjectName("execTimeLabel")
+        self.excutionTime = QtWidgets.QLineEdit(self.groupBox_2)
+        self.excutionTime.setGeometry(QtCore.QRect(180, 110, 91, 21))
+        self.excutionTime.setStyleSheet("border: 0;\n"
+"border-bottom: 1px solid #999;\n"
+"background: transparent;\n"
+"font-size: 14px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.excutionTime.setText("")
+        self.excutionTime.setObjectName("excutionTime")
+        self.SecondsLabel = QtWidgets.QLabel(self.groupBox_2)
+        self.SecondsLabel.setGeometry(QtCore.QRect(280, 110, 91, 31))
+        self.SecondsLabel.setStyleSheet("background: transparent;\n"
+"color: rgb(234, 255, 253);\n"
+"margin: 5px;\n"
+"font-size: 16px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(234, 255, 253);")
+        self.SecondsLabel.setObjectName("SecondsLabel")
+        self.showIterations = QtWidgets.QPushButton(self.groupBox_2)
+        self.showIterations.setGeometry(QtCore.QRect(10, 170, 141, 32))
+        self.showIterations.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgb(234, 255, 253);\n"
+"font-size: 14px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(0, 0, 40);\n"
+"")
+        self.showIterations.setObjectName("showIterations")
+        self.calculate = QtWidgets.QPushButton(self.groupBox_2)
+        self.calculate.setGeometry(QtCore.QRect(160, 170, 101, 32))
+        self.calculate.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgb(234, 255, 253);\n"
+"font-size: 14px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(0, 0, 40);\n"
+"")
+        self.calculate.setObjectName("calculate")
+        self.showGraph = QtWidgets.QPushButton(self.groupBox_2)
+        self.showGraph.setGeometry(QtCore.QRect(270, 170, 141, 32))
+        self.showGraph.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgb(234, 255, 253);\n"
+"font-size: 14px;\n"
+"font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
+"color: rgb(0, 0, 40);\n"
+"")
+        self.showGraph.setObjectName("showGraph")
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
@@ -373,28 +478,40 @@ class Ui_MainWindow(object):
         self.method.currentTextChanged.connect(self.setMethod)
         # Hide unneeded fields.
         self.errorMsg.hide()
+        self.initialLabel.hide()
+        self.initialPointsInput.hide()
+        self.excutionTime.hide()
+        self.execTimeLabel.hide()
+        self.SecondsLabel.hide()
+        self.valuesResult2.hide()
+        self.showIterations.hide()
+        self.showGraph.hide()
         self.labelEqu3.hide()
         self.labelEqu4.hide()
         self.labelEqu5.hide()
         self.labelEqu6.hide()
         self.labelEqu7.hide()
         self.labelEqu8.hide()
+        self.labelEqu9.hide()
         self.lineEditEQ3.hide()
         self.lineEditEQ4.hide()
         self.lineEditEQ5.hide()
         self.lineEditEQ6.hide()
         self.lineEditEQ7.hide()
         self.lineEditEQ8.hide()
-        self.initialLabel.hide()
-        self.initialPointsInput.hide()
+        self.lineEditEQ9.hide()
 
     def setMethod(self):
         if (self.method.currentText() == "Gaussian- Jordan" or self.method.currentText() == "All"):
             self.initialPointsInput.show()
             self.initialLabel.show()
+            self.showGraph.show()
+            self.showIterations.show()
         else:
             self.initialLabel.hide()
             self.initialPointsInput.hide()
+            self.showIterations.hide()
+            self.showGraph.hide()
 
     def readFromFile(self):
         if (self.checkBox.isChecked()):
@@ -414,12 +531,14 @@ class Ui_MainWindow(object):
         self.labelEqu6.hide()
         self.labelEqu7.hide()
         self.labelEqu8.hide()
+        self.lineEditEQ9.hide()
         self.lineEditEQ3.hide()
         self.lineEditEQ4.hide()
         self.lineEditEQ5.hide()
         self.lineEditEQ6.hide()
         self.lineEditEQ7.hide()
         self.lineEditEQ8.hide()
+        self.lineEditEQ9.hide()
         if (numberOfEqu > 2):
             self.labelEqu3.show()
             self.lineEditEQ3.show()
@@ -438,10 +557,13 @@ class Ui_MainWindow(object):
         if (numberOfEqu > 7):
             self.labelEqu8.show()
             self.lineEditEQ8.show()
+        if (numberOfEqu > 8):
+            self.labelEqu9.show()
+            self.lineEditEQ9.show()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "LAB TWO"))
         self.label.setText(_translate("MainWindow", "Numerical Project"))
         self.label_2.setText(_translate("MainWindow", "Function"))
         self.checkBox.setText(_translate("MainWindow", "Select from File"))
@@ -455,6 +577,7 @@ class Ui_MainWindow(object):
         self.labelEqu6.setText(_translate("MainWindow", "Sixth Equation:"))
         self.labelEqu7.setText(_translate("MainWindow", "Seventh Equation:"))
         self.labelEqu8.setText(_translate("MainWindow", "Eighth Equation:"))
+        self.labelEqu9.setText(_translate("MainWindow", "Ninth Equation:"))
         self.label_7.setText(_translate("MainWindow", "Parameters"))
         self.label_5.setText(_translate("MainWindow", "Max Iteration:"))
         self.label_6.setText(_translate("MainWindow", "Epsilon:"))
@@ -466,7 +589,13 @@ class Ui_MainWindow(object):
         self.method.setItemText(3, _translate("MainWindow", "Gauss-Seidel"))
         self.method.setItemText(4, _translate("MainWindow", "All"))
         self.initialLabel.setText(_translate("MainWindow", "Initial Points:"))
-        self.label_10.setText(_translate("MainWindow", "Result"))
+        self.label_10.setText(_translate("MainWindow", "Results"))
+        self.label_11.setText(_translate("MainWindow", "Variables Values:"))
+        self.execTimeLabel.setText(_translate("MainWindow", "Execution time:"))
+        self.SecondsLabel.setText(_translate("MainWindow", "Seconds"))
+        self.showIterations.setText(_translate("MainWindow", "Show iterations"))
+        self.calculate.setText(_translate("MainWindow", "Calculate"))
+        self.showGraph.setText(_translate("MainWindow", "Show Graph"))
 
 
 if __name__ == "__main__":
