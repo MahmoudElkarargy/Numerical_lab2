@@ -8,7 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from Methods.GaussianElimination import mainFunc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -476,6 +476,8 @@ class Ui_MainWindow(object):
         self.nbOfVariables.valueChanged.connect(self.setNumberOfEquations)
         self.checkBox.stateChanged.connect(self.readFromFile)
         self.method.currentTextChanged.connect(self.setMethod)
+        self.calculate.clicked.connect(self.calculateButtonClicked)
+
         # Hide unneeded fields.
         self.errorMsg.hide()
         self.initialLabel.hide()
@@ -512,6 +514,9 @@ class Ui_MainWindow(object):
             self.initialPointsInput.hide()
             self.showIterations.hide()
             self.showGraph.hide()
+        self.execTimeLabel.hide()
+        self.excutionTime.hide()
+        self.SecondsLabel.hide()
 
     def readFromFile(self):
         if (self.checkBox.isChecked()):
@@ -560,6 +565,52 @@ class Ui_MainWindow(object):
         if (numberOfEqu > 8):
             self.labelEqu9.show()
             self.lineEditEQ9.show()
+
+    def calculateButtonClicked(self):
+        redStyle = 'background: transparent; color:rgb(252, 1, 7);font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
+        greenStyle = 'background: transparent; color:lightgreen;font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
+        self.errorMsg.show()
+        numberOfVariables = int(self.nbOfVariables.text())
+        if(self.lineEditEQ1.text() == "" or self.lineEditEQ2.text() == "" or
+                (self.lineEditEQ3.text() == "" and numberOfVariables > 2) or
+                (self.lineEditEQ4.text() == "" and numberOfVariables > 3) or
+                (self.lineEditEQ5.text() == "" and numberOfVariables > 4) or
+                (self.lineEditEQ6.text() == "" and numberOfVariables > 5) or
+                (self.lineEditEQ7.text() == "" and numberOfVariables > 6) or
+                (self.lineEditEQ8.text() == "" and numberOfVariables > 7) or
+                (self.lineEditEQ9.text() == "" and numberOfVariables > 8)
+        ):
+            self.errorMsg.setStyleSheet(redStyle)
+            self.errorMsg.setText("PLEASE FILL ALL THE EQUATIONS!")
+        else:
+            self.errorMsg.setStyleSheet(greenStyle)
+            self.errorMsg.setText("CALCULATING ....")
+            method = self.method.currentText()
+
+            # Get Equations..
+            fullEquation = ""
+            fullEquation = self.lineEditEQ1.text() + "," + self.lineEditEQ2.text()
+            if(method == "Gaussian-Elimination"):
+                print("Gaussian-Elimination")
+                result = mainFunc(numberOfVariables, fullEquation)
+                print(result)
+            elif(method == "LU decomposition"):
+                print("LU decomposition")
+            elif(method == "Gaussian- Jordan"):
+                print("Gaussian- Jordan")
+            elif(method == "Gauss-Seidel"):
+                print("Gauss-Seidel")
+            else:
+                print("All methods")
+
+
+            if( numberOfVariables > 3):
+                self.valuesResult2.show()
+            else:
+                self.valuesResult2.hide()
+            self.execTimeLabel.show()
+            self.excutionTime.show()
+            self.SecondsLabel.show()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
