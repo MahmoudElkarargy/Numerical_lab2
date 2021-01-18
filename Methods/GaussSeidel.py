@@ -37,7 +37,7 @@ def SeidalMainFun(numberOfVariables, inputEquations, no_of_iterations, epsilon, 
         print("File not exist")
     # loop run for m times depending on m the error value
     x_old = np.zeros(numberOfVariables)
-
+    iterations_output = np.zeros((no_of_iterations,numberOfVariables))
     for i in range(0, no_of_iterations):
         x_old = np.array(x)
         x = seidel(a, x)
@@ -49,8 +49,10 @@ def SeidalMainFun(numberOfVariables, inputEquations, no_of_iterations, epsilon, 
             break
         # print each time the updated solution
         print(x)
-        content = str(x)
-        file.write(content)
-        file.write("\n")
+        iterations_output[i] = x
+    # content = str(iterations_output)
+
+    np.savetxt(file, iterations_output)
+
     file.close()
     return x

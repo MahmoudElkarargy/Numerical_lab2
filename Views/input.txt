@@ -1,7 +1,6 @@
-4
-Gaussian-elimination
-x+y+0z+1m=2
-2x+1y-1z+1m=1
-4x-1y-2z+2m=0
-3x-1y-1z+2m=3
-1 1.1 2
+3
+Gaussian-Seidel
+10x+2y-1z-27
+-3x-6y+2z+61.5
+1x+1y+5z+21.5
+1 1 1
