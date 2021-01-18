@@ -2,32 +2,30 @@ import numpy as np
 import sys
 from Methods.ConvertToMatrix import inputToMatrix
 
+def JordonCalculate(numberOfVariables, inputEquations):
+    a = inputToMatrix(numberOfVariables , inputEquations)
+    # Applying Gauss Jordan Elimination
+    for i in range(numberOfVariables):
+        if a[i][i] == 0.0:
+            return "Error"
 
-# Reading number of unknowns
+        for j in range(numberOfVariables):
+            if i != j:
+                ratio = a[j][i] / a[i][i]
 
-n = int(input('Enter number of unknowns: '))
-input=input('Enter your equations separated by "," ')
-a = inputToMatrix(n , input)
+                for k in range(numberOfVariables + 1):
+                    a[j][k] = a[j][k] - ratio * a[i][k]
 
-# Applying Gauss Jordan Elimination
-for i in range(n):
-    if a[i][i] == 0.0:
-        sys.exit('Divide by zero detected!')
+    # Obtaining Solution
+    x = np.zeros(numberOfVariables)
+    for i in range(numberOfVariables):
+        x[i] = a[i][numberOfVariables] / a[i][i]
 
-    for j in range(n):
-        if i != j:
-            ratio = a[j][i] / a[i][i]
+    # Displaying solution
+    result = ""
+    for i in range(numberOfVariables):
+        result += '%0.2f' % x[i] + ','
+    return result
 
-            for k in range(n + 1):
-                a[j][k] = a[j][k] - ratio * a[i][k]
-
-# Obtaining Solution
-x = np.zeros(n)
-for i in range(n):
-    x[i] = a[i][n] / a[i][i]
-
-# Displaying solution
-print('\nRequired solution is: ')
-for i in range(n):
-    print('X%d = %0.2f' % (i, x[i]), end='\t')
-
+def JordonMainFun(numberOfVariables, inputEquations):
+    return JordonCalculate(numberOfVariables, inputEquations)

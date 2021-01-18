@@ -40,5 +40,4 @@ def GaussianElim(numberOfVariables, inputEquations):
     return result
 
 def mainFunc(numberOfVariables, inputEquations):
-    print("hey")
     return GaussianElim(numberOfVariables, inputEquations)

@@ -9,6 +9,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Methods.GaussianElimination import mainFunc
+from Methods.GaussianJordan import JordonMainFun
+from Methods.LUDecomposition import LUMainFun
+from Methods.GaussSeidel import SeidalMainFun
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -487,7 +490,7 @@ class Ui_MainWindow(object):
         self.valuesResult2.hide()
 
     def setMethod(self):
-        if (self.method.currentText() == "Gaussian- Jordan" or self.method.currentText() == "All"):
+        if (self.method.currentText() == "Gauss-Seidel" or self.method.currentText() == "All"):
             self.initialPointsInput.show()
             self.initialLabel.show()
             self.showGraph.show()
@@ -731,9 +734,10 @@ class Ui_MainWindow(object):
                                 string += "  " + varr[i].upper() + ": "
                                 string += results[i]
                             self.valuesResult1.setText(string)
-                            for i in range(4, len(results - 1)):
-                                string += "  " + varr[i].upper() + ": "
-                                string += results[i]
+                            string = ""
+                            for j in range(4, (len(results)-1)):
+                                string += "  " + varr[j].upper() + ": "
+                                string += results[j]
                             self.valuesResult2.setText(string)
                         else:
                             results = result.split(',')
@@ -746,14 +750,97 @@ class Ui_MainWindow(object):
                         self.execTimeLabel.show()
                         self.excutionTime.show()
                         self.SecondsLabel.show()
-
                 elif (method == "LU decomposition"):
                     print("LU decomposition")
+                    result = LUMainFun(numberOfVariables, fullEquation)
+                    print(result)
+                    if (numberOfVariables > 4):
+                        result = result.tolist()
+                        string = ""
+                        print(result)
+                        for i in range(4):
+                            string += "  " + varr[i].upper() + ": "
+                            string += str(round(result[i], 3))
+                        self.valuesResult1.setText(string)
+                        string = ""
+                        for j in range(4, (len(result))):
+                            string += "  " + varr[j].upper() + ": "
+                            string += str(round(result[j], 3))
+                        self.valuesResult2.setText(string)
+                    else:
+                        result = result.tolist()
+                        string = ""
+                        for i in range(len(result)):
+                            string += "  " + varr[i].upper() + ": "
+                            string += str(round(result[i], 3))
+                        self.valuesResult1.setText(string)
+                    self.errorMsg.setText("SOLVED USED LU Decomposition")
+                    self.execTimeLabel.show()
+                    self.excutionTime.show()
+                    self.SecondsLabel.show()
                 elif (method == "Gaussian- Jordan"):
                     print("Gaussian- Jordan")
-
+                    result = JordonMainFun(numberOfVariables, fullEquation)
+                    if (result == "Error"):
+                        self.errorMsg.setStyleSheet(redStyle)
+                        self.errorMsg.setText("ERROR!: Functions are incorrect")
+                    else:
+                        print(result)
+                        if (numberOfVariables > 4):
+                            results = result.split(',')
+                            string = ""
+                            for i in range(4):
+                                string += "  " + varr[i].upper() + ": "
+                                string += results[i]
+                            self.valuesResult1.setText(string)
+                            string = ""
+                            for j in range(4, (len(results) - 1)):
+                                string += "  " + varr[j].upper() + ": "
+                                string += results[j]
+                            self.valuesResult2.setText(string)
+                        else:
+                            results = result.split(',')
+                            string = ""
+                            for i in range(len(results) - 1):
+                                string += "  " + varr[i].upper() + ": "
+                                string += results[i]
+                            self.valuesResult1.setText(string)
+                        self.errorMsg.setText("SOLVED USED GAUSSIAN-JORDON")
+                        self.execTimeLabel.show()
+                        self.excutionTime.show()
+                        self.SecondsLabel.show()
                 elif (method == "Gauss-Seidel"):
                     print("Gauss-Seidel")
+                    init = self.initialPointsInput.text()
+                    if(init == ""):
+                        self.errorMsg.setStyleSheet(redStyle)
+                        self.errorMsg.setText("PLEASE WRITE DOWN THE INITAL POINTS!")
+                    else:
+                        initList = init.split(' ')
+                        if(len(initList) != numberOfVariables):
+                            self.errorMsg.setStyleSheet(redStyle)
+                            self.errorMsg.setText("SOME INITAL POINTS ARE MISSED!")
+                        else:
+                            newlist = [float(i) for i in initList]
+                            result = SeidalMainFun(numberOfVariables, fullEquation, int(self.maxIterations.text()),
+                                                   float(self.Epsilon.text()), newlist)
+                            result = result.tolist()
+                            string = ""
+                            print(result)
+                            self.valuesResult2.show()
+                            for i in range(2):
+                                string += "  " + varr[i].upper() + ": "
+                                string += str(result[i])
+                            self.valuesResult1.setText(string)
+                            string = ""
+                            for j in range(2, (len(result))):
+                                string += "  " + varr[j].upper() + ": "
+                                string += str(result[j])
+                            self.valuesResult2.setText(string)
+                            self.errorMsg.setText("SOLVED USED LU Decomposition")
+                            self.execTimeLabel.show()
+                            self.excutionTime.show()
+                            self.SecondsLabel.show()
                 else:
                     print("All methods")
 

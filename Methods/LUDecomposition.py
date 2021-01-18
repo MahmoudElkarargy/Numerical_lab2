@@ -5,12 +5,8 @@ from Methods.ConvertToMatrix import inputToMatrix
 
 # Reading number of unknowns
 
-n = int(input('Enter number of unknowns: '))
-input = input('Enter your equations separated by "," ')
-a = inputToMatrix(n, input)
-
-
 def luDecomposition(A, n):
+
     L = [[0.0] * n for i in range(n)]
     U = [[0.0] * n for i in range(n)]
     for j in range(n):
@@ -24,19 +20,12 @@ def luDecomposition(A, n):
     return (L, U)
 
 
+def LUMainFun(numberOfVariables, inputEquations):
+    a = inputToMatrix(numberOfVariables, inputEquations)
+    lower, upper = luDecomposition(a,numberOfVariables)
+    L= np.array(lower)
+    U=np.array(upper)
+    D = np.linalg.inv(L).dot(a[ :,numberOfVariables])
+    x = np.linalg.inv(U).dot(D)
+    return x
 
-lower, upper = luDecomposition(a,n)
-L= np.array(lower, dtype=np.double)
-U=np.array(upper, dtype=np.double)
-D = np.linalg.inv(L).dot(a[ :,n])
-x = np.linalg.inv(U).dot(D)
-
-print(x)
-print("A:")
-pprint.pprint(a)
-
-print("L:")
-pprint.pprint(L)
-
-print("U:")
-pprint.pprint(U)
