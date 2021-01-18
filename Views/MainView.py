@@ -8,12 +8,12 @@
 import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import numpy as np
 from Methods.GaussianElimination import mainFunc
 from Methods.GaussianJordan import JordonMainFun
 from Methods.LUDecomposition import LUMainFun
 from Methods.GaussSeidel import SeidalMainFun
-
+from Views.plot import Ui_SecondWindow
+import time
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -272,7 +272,7 @@ class Ui_MainWindow(object):
 "font-size: 16px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;\n"
 "color: rgb(234, 255, 253);")
-        self.maxIterations.setMinimum(5)
+        self.maxIterations.setMinimum(1)
         self.maxIterations.setMaximum(100000000)
         self.maxIterations.setProperty("value", 50)
         self.maxIterations.setObjectName("maxIterations")
@@ -482,6 +482,7 @@ class Ui_MainWindow(object):
         self.checkBox.stateChanged.connect(self.readFromFile)
         self.method.currentTextChanged.connect(self.setMethod)
         self.calculate.clicked.connect(self.calculateButtonClicked)
+        self.showGraph.clicked.connect(self.ShowGraph)
 
         # Hide unneeded fields.
         self.errorMsg.hide()
@@ -489,6 +490,16 @@ class Ui_MainWindow(object):
         self.execTimeLabel.hide()
         self.SecondsLabel.hide()
         self.valuesResult2.hide()
+
+    def ShowGraph(self):
+
+        self.window = QtWidgets.QMainWindow()
+        maxIter = int(self.maxIterations.text())
+        print(maxIter)
+        self.ui = Ui_SecondWindow(maxIter)
+        self.ui.setupUi(self.window)
+        # MainWindow.hide()
+        self.window.show()
 
     def setMethod(self):
         if (self.method.currentText() == "Gauss-Seidel" or self.method.currentText() == "All"):
@@ -721,14 +732,18 @@ class Ui_MainWindow(object):
                         else:
                             self.valuesResult2.hide()
                         print(fullEquation)
-                        if (method == "Gaussian-Elimination"):
+                        if (method == "Gaussian-Elimination" or method == "All Methods"):
                             print("Gaussian-Elimination")
+                            start_time = time.time()
                             result = mainFunc(numberOfVariables, fullEquation)
                             if (result == "Error"):
                                 self.errorMsg.setStyleSheet(redStyle)
                                 self.errorMsg.setText("ERROR!: Functions are incorrect")
                             else:
                                 print(result)
+                                end_time = time.time()
+                                t2 = end_time - start_time
+                                self.excutionTime.setText("%.4f s" % t2)
                                 if (numberOfVariables > 4):
                                     results = result.split(',')
                                     string = ""
@@ -736,11 +751,13 @@ class Ui_MainWindow(object):
                                         string += "  " + varr[i].upper() + ": "
                                         string += results[i]
                                     self.valuesResult1.setText(string)
+                                    print("Solution: " + string)
                                     string = ""
                                     for j in range(4, (len(results)-1)):
                                         string += "  " + varr[j].upper() + ": "
                                         string += results[j]
                                     self.valuesResult2.setText(string)
+                                    print(string)
                                 else:
                                     results = result.split(',')
                                     string = ""
@@ -748,13 +765,19 @@ class Ui_MainWindow(object):
                                         string += "  " + varr[i].upper() + ": "
                                         string += results[i]
                                     self.valuesResult1.setText(string)
+                                    print("Solution: " + string)
                                 self.errorMsg.setText("SOLVED USED GAUSSIAN-ELIMINATION")
+                                print("SOLVED USED GAUSSIAN-ELIMINATION")
                                 self.execTimeLabel.show()
                                 self.excutionTime.show()
                                 self.SecondsLabel.show()
-                        elif (method == "LU decomposition"):
+                        if (method == "LU decomposition" or method == "All Methods"):
                             print("LU decomposition")
+                            start_time = time.time()
                             result = LUMainFun(numberOfVariables, fullEquation)
+                            end_time = time.time()
+                            t2 = end_time - start_time
+                            self.excutionTime.setText("%.4f s" % t2)
                             print(result)
                             if (numberOfVariables > 4):
                                 result = result.tolist()
@@ -764,11 +787,13 @@ class Ui_MainWindow(object):
                                     string += "  " + varr[i].upper() + ": "
                                     string += str(round(result[i], 3))
                                 self.valuesResult1.setText(string)
+                                print("Solution: " + string)
                                 string = ""
                                 for j in range(4, (len(result))):
                                     string += "  " + varr[j].upper() + ": "
                                     string += str(round(result[j], 3))
                                 self.valuesResult2.setText(string)
+                                print(string)
                             else:
                                 result = result.tolist()
                                 string = ""
@@ -776,18 +801,24 @@ class Ui_MainWindow(object):
                                     string += "  " + varr[i].upper() + ": "
                                     string += str(round(result[i], 3))
                                 self.valuesResult1.setText(string)
+                                print("Solution: " + string)
                             self.errorMsg.setText("SOLVED USED LU Decomposition")
+                            print("SOLVED USED LU Decomposition")
                             self.execTimeLabel.show()
                             self.excutionTime.show()
                             self.SecondsLabel.show()
-                        elif (method == "Gaussian- Jordan"):
+                        if (method == "Gaussian- Jordan" or method == "All Methods"):
                             print("Gaussian- Jordan")
+                            start_time = time.time()
                             result = JordonMainFun(numberOfVariables, fullEquation)
                             if (result == "Error"):
                                 self.errorMsg.setStyleSheet(redStyle)
                                 self.errorMsg.setText("ERROR!: Functions are incorrect")
                             else:
                                 print(result)
+                                end_time = time.time()
+                                t2 = end_time - start_time
+                                self.excutionTime.setText("%.4f s" % t2)
                                 if (numberOfVariables > 4):
                                     results = result.split(',')
                                     string = ""
@@ -795,11 +826,13 @@ class Ui_MainWindow(object):
                                         string += "  " + varr[i].upper() + ": "
                                         string += results[i]
                                     self.valuesResult1.setText(string)
+                                    print("Solution: " + string)
                                     string = ""
                                     for j in range(4, (len(results) - 1)):
                                         string += "  " + varr[j].upper() + ": "
                                         string += results[j]
                                     self.valuesResult2.setText(string)
+                                    print(string)
                                 else:
                                     results = result.split(',')
                                     string = ""
@@ -807,11 +840,13 @@ class Ui_MainWindow(object):
                                         string += "  " + varr[i].upper() + ": "
                                         string += results[i]
                                     self.valuesResult1.setText(string)
+                                    print("Solution: " + string)
                                 self.errorMsg.setText("SOLVED USED GAUSSIAN-JORDON")
+                                print("SOLVED USED GAUSSIAN-JORDON")
                                 self.execTimeLabel.show()
                                 self.excutionTime.show()
                                 self.SecondsLabel.show()
-                        elif (method == "Gauss-Seidel"):
+                        if (method == "Gauss-Seidel" or method == "All Methods"):
                             print("Gauss-Seidel")
                             init = self.initialPointsInput.text()
                             if(init == ""):
@@ -824,27 +859,33 @@ class Ui_MainWindow(object):
                                     self.errorMsg.setText("SOME INITAL POINTS ARE MISSED!")
                                 else:
                                     newlist = [float(i) for i in initList]
+                                    start_time = time.time()
                                     result = SeidalMainFun(numberOfVariables, fullEquation, int(self.maxIterations.text()),
                                                            float(self.Epsilon.text()), newlist)
                                     result = result.tolist()
                                     string = ""
                                     print(result)
+                                    end_time = time.time()
+                                    t2 = end_time - start_time
+                                    self.excutionTime.setText("%.4f s" % t2)
                                     self.valuesResult2.show()
                                     for i in range(2):
                                         string += "  " + varr[i].upper() + ": "
                                         string += str(result[i])
                                     self.valuesResult1.setText(string)
+                                    print("Solution: " + string)
                                     string = ""
                                     for j in range(2, (len(result))):
                                         string += "  " + varr[j].upper() + ": "
                                         string += str(result[j])
                                     self.valuesResult2.setText(string)
-                                    self.errorMsg.setText("SOLVED USED LU Decomposition")
+                                    print(string)
+                                    self.errorMsg.setText("SOLVED USED GAUSS-SEIDEL")
+                                    print("SOLVED USED GAUSS-SEIDEL")
                                     self.execTimeLabel.show()
                                     self.excutionTime.show()
                                     self.SecondsLabel.show()
-                        else:
-                            print("All methods")
+
         else:
                 input_file = open("../Views/input.txt","r")
                 if os.path.isfile('../Views/input.txt'):

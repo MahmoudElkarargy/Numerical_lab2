@@ -1,52 +1,51 @@
 import numpy
 from PyQt5 import QtWidgets, QtCore
-from pyqtgraph import PlotWidget, plot
 import pyqtgraph as pg
 import sys  # We need sys so that we can pass argv to QApplication
-import os
 
-class MainWindow(QtWidgets.QMainWindow):
+class Ui_SecondWindow(object):
 
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
+    maxIterations = 0
+    def __init__(self, maxIterations):
+        self.maxIterations = maxIterations
 
-        self.graphWidget = pg.PlotWidget()
-        self.setCentralWidget(self.graphWidget)
-        self.iteration = 50
-        iterations = [i+1 for i in range(self.iteration)]
+    def setupUi(self, MainWindow):
+        MainWindow.graphWidget = pg.PlotWidget()
+        MainWindow.setCentralWidget(MainWindow.graphWidget)
         content = numpy.loadtxt('values.txt')
         content = numpy.transpose(content)
         print(content)
         # self.iteration = j
-        iterations = [i + 1 for i in range(self.iteration)]
+        iterations = [i + 1 for i in range(self.maxIterations)]
         #Add Background colour to white
-        self.graphWidget.setBackground('w')
+        MainWindow.graphWidget.setBackground('w')
         # Add Title
-        self.graphWidget.setTitle("variables with iterations", color="b", size="20pt")
+        MainWindow.graphWidget.setTitle("variables with iterations", color="b", size="20pt")
         # Add Axis Labels
         styles = {"color": "#00f", "font-size": "30px"}
-        self.graphWidget.setLabel("left", "values", **styles)
-        self.graphWidget.setLabel("bottom", "iterations", **styles)
+        MainWindow.graphWidget.setLabel("left", "values", **styles)
+        MainWindow.graphWidget.setLabel("bottom", "iterations", **styles)
         #Add legend
-        self.graphWidget.addLegend()
+        MainWindow.graphWidget.addLegend()
         #Add grid
-        self.graphWidget.showGrid(x=True, y=True)
+        MainWindow.graphWidget.showGrid(x=True, y=True)
         #Set Range
-        self.graphWidget.setXRange(0, self.iteration, padding=0)
-        self.graphWidget.setYRange(-10, 10, padding=0)
+        MainWindow.graphWidget.setXRange(0, self.maxIterations, padding=0)
+        MainWindow.graphWidget.setYRange(-10, 10, padding=0)
 
         for i in range(content.shape[0]):
-            self.plot(iterations, list(content[i]),"iterations of variable "+str(i), 'r')
+            self.plot(MainWindow, iterations, list(content[i]),"iterations of variable "+str(i), 'r')
 
-    def plot(self, x, y, plotname, color):
+    def plot(self, MainWindow ,x, y, plotname, color):
         pen = pg.mkPen(color=color)
-        self.graphWidget.plot(x, y, name=plotname, pen=pen, symbol='o', symbolSize=10, symbolBrush=(color))
+        MainWindow.graphWidget.plot(x, y, name=plotname, pen=pen, symbol='o', symbolSize=10, symbolBrush=(color))
 
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    main = MainWindow()
-    main.show()
-    sys.exit(app.exec_())
 
 if __name__ == '__main__':
-    main()
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    graph = QtWidgets.QMainWindow()
+    ui = Ui_SecondWindow()
+    ui.setupUi(graph)
+    graph.show()
+    sys.exit(app.exec_())
