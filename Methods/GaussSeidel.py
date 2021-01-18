@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 from Methods.ConvertToMatrix import inputToMatrix
 
@@ -28,7 +30,11 @@ def SeidalMainFun(numberOfVariables, inputEquations, no_of_iterations, epsilon, 
     a = inputToMatrix(numberOfVariables, inputEquations)
     x = np.array(initial)  # initial guesses input from user
 
-
+    file = open("../Views/values.txt", "w+")
+    if os.path.isfile('../Views/values.txt'):
+        print("File exist")
+    else:
+        print("File not exist")
     # loop run for m times depending on m the error value
     x_old = np.zeros(numberOfVariables)
 
@@ -43,4 +49,8 @@ def SeidalMainFun(numberOfVariables, inputEquations, no_of_iterations, epsilon, 
             break
         # print each time the updated solution
         print(x)
+        content = str(x)
+        file.write(content)
+        file.write("\n")
+    file.close()
     return x

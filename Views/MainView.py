@@ -5,9 +5,10 @@
 # Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
-
+import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import numpy as np
 from Methods.GaussianElimination import mainFunc
 from Methods.GaussianJordan import JordonMainFun
 from Methods.LUDecomposition import LUMainFun
@@ -572,277 +573,412 @@ class Ui_MainWindow(object):
         redStyle = 'background: transparent; color:rgb(252, 1, 7);font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
         greenStyle = 'background: transparent; color:lightgreen;font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
         self.errorMsg.show()
-        numberOfVariables = int(self.nbOfVariables.text())
-        if (self.lineEditEQ1.text() == "" or self.lineEditEQ2.text() == "" or
-                (self.lineEditEQ3.text() == "" and numberOfVariables > 2) or
-                (self.lineEditEQ4.text() == "" and numberOfVariables > 3) or
-                (self.lineEditEQ5.text() == "" and numberOfVariables > 4) or
-                (self.lineEditEQ6.text() == "" and numberOfVariables > 5) or
-                (self.lineEditEQ7.text() == "" and numberOfVariables > 6) or
-                (self.lineEditEQ8.text() == "" and numberOfVariables > 7) or
-                (self.lineEditEQ9.text() == "" and numberOfVariables > 8)
-        ):
-            self.errorMsg.setStyleSheet(redStyle)
-            self.errorMsg.setText("PLEASE FILL ALL THE EQUATIONS!")
-        else:
-            self.errorMsg.setStyleSheet(greenStyle)
-            self.errorMsg.setText("CALCULATING ....")
-            method = self.method.currentText()
-
-            # Get Equations..
-            # Handle spaces in equation
-            firstEq = self.lineEditEQ1.text()
-            firstEq = firstEq.replace(" ", "")
-            firstEq = firstEq.lower()
-            # Getting the variables in the first eq..
-            varr = []
-            for char in firstEq:
-                if (char.isalpha()):
-                    print(char)
-                    varr.append(char)
-            # Getting the second eq and handle spaces.
-            secondEq = self.lineEditEQ2.text()
-            secondEq = secondEq.replace(" ", "")
-            secondEq = secondEq.lower()
-            i = 0
-            # Check if still the variables entered is less than the nb of varaibles
-            while (len(varr) != numberOfVariables and i < len(secondEq)):
-                # Make sure this var is not added before.
-                if (secondEq[i].isalpha() and not (self.search(varr, secondEq[i]))):
-                    varr.append(secondEq[i])
-                i += 1
-            fullEquation = firstEq + "," + secondEq
-            if (numberOfVariables > 2):
-                # Getting the third eq and handle spaces.
-                thirdEq = self.lineEditEQ3.text()
-                thirdEq = thirdEq.replace(" ", "")
-                thirdEq = thirdEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(thirdEq)):
-                    # Make sure this var is not added before.
-                    if (thirdEq[i].isalpha() and not (self.search(varr, thirdEq[i]))):
-                        varr.append(thirdEq[i])
-                    i += 1
-                fullEquation += "," + thirdEq
-
-            if (numberOfVariables > 3):
-                # Getting the third eq and handle spaces.
-                forthEq = self.lineEditEQ4.text()
-                forthEq = forthEq.replace(" ", "")
-                forthEq = forthEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(forthEq)):
-                    # Make sure this var is not added before.
-                    if (forthEq[i].isalpha() and not (self.search(varr, forthEq[i]))):
-                        varr.append(forthEq[i])
-                    i += 1
-                fullEquation += "," + forthEq
-
-            if (numberOfVariables > 4):
-                # Getting the third eq and handle spaces.
-                fifthEq = self.lineEditEQ5.text()
-                fifthEq = fifthEq.replace(" ", "")
-                fifthEq = fifthEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(fifthEq)):
-                    # Make sure this var is not added before.
-                    if (fifthEq[i].isalpha() and not (self.search(varr, fifthEq[i]))):
-                        varr.append(fifthEq[i])
-                    i += 1
-                fullEquation += "," + fifthEq
-
-            if (numberOfVariables > 5):
-                # Getting the third eq and handle spaces.
-                sixthEq = self.lineEditEQ6.text()
-                sixthEq = sixthEq.replace(" ", "")
-                sixthEq = sixthEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(sixthEq)):
-                    # Make sure this var is not added before.
-                    if (sixthEq[i].isalpha() and not (self.search(varr, sixthEq[i]))):
-                        varr.append(sixthEq[i])
-                    i += 1
-                fullEquation += "," + sixthEq
-
-            if (numberOfVariables > 6):
-                # Getting the third eq and handle spaces.
-                seventhEq = self.lineEditEQ7.text()
-                seventhEq = seventhEq.replace(" ", "")
-                seventhEq = seventhEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(seventhEq)):
-                    # Make sure this var is not added before.
-                    if (seventhEq[i].isalpha() and not (self.search(varr, seventhEq[i]))):
-                        varr.append(seventhEq[i])
-                    i += 1
-                fullEquation += "," + seventhEq
-
-            if (numberOfVariables > 7):
-                # Getting the third eq and handle spaces.
-                eigthEq = self.lineEditEQ8.text()
-                eigthEq = eigthEq.replace(" ", "")
-                eigthEq = eigthEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(eigthEq)):
-                    # Make sure this var is not added before.
-                    if (eigthEq[i].isalpha() and not (self.search(varr, eigthEq[i]))):
-                        varr.append(eigthEq[i])
-                    i += 1
-                fullEquation += "," + eigthEq
-
-            if (numberOfVariables > 8):
-                # Getting the third eq and handle spaces.
-                ninthEq = self.lineEditEQ9.text()
-                ninthEq = ninthEq.replace(" ", "")
-                ninthEq = ninthEq.lower()
-                i = 0
-                # Check if still the variables entered is less than the nb of varaibles
-                while (len(varr) != numberOfVariables and i < len(ninthEq)):
-                    # Make sure this var is not added before.
-                    if (ninthEq[i].isalpha() and not (self.search(varr, ninthEq[i]))):
-                        varr.append(ninthEq[i])
-                    i += 1
-                fullEquation += "," + ninthEq
-
-            if (len(varr) != numberOfVariables):
-                self.errorMsg.setStyleSheet(redStyle)
-                self.errorMsg.setText("NUMBERS OF VARIABLES ARE NOT CORRECT!")
-            else:
-                if (numberOfVariables > 4):
-                    self.valuesResult2.show()
+        if not self.checkBox.isChecked():
+                numberOfVariables = int(self.nbOfVariables.text())
+                if (self.lineEditEQ1.text() == "" or self.lineEditEQ2.text() == "" or
+                        (self.lineEditEQ3.text() == "" and numberOfVariables > 2) or
+                        (self.lineEditEQ4.text() == "" and numberOfVariables > 3) or
+                        (self.lineEditEQ5.text() == "" and numberOfVariables > 4) or
+                        (self.lineEditEQ6.text() == "" and numberOfVariables > 5) or
+                        (self.lineEditEQ7.text() == "" and numberOfVariables > 6) or
+                        (self.lineEditEQ8.text() == "" and numberOfVariables > 7) or
+                        (self.lineEditEQ9.text() == "" and numberOfVariables > 8)
+                ):
+                    self.errorMsg.setStyleSheet(redStyle)
+                    self.errorMsg.setText("PLEASE FILL ALL THE EQUATIONS!")
                 else:
-                    self.valuesResult2.hide()
-                print(fullEquation)
-                if (method == "Gaussian-Elimination"):
-                    print("Gaussian-Elimination")
-                    result = mainFunc(numberOfVariables, fullEquation)
-                    if (result == "Error"):
-                        self.errorMsg.setStyleSheet(redStyle)
-                        self.errorMsg.setText("ERROR!: Functions are incorrect")
-                    else:
-                        print(result)
-                        if (numberOfVariables > 4):
-                            results = result.split(',')
-                            string = ""
-                            for i in range(4):
-                                string += "  " + varr[i].upper() + ": "
-                                string += results[i]
-                            self.valuesResult1.setText(string)
-                            string = ""
-                            for j in range(4, (len(results)-1)):
-                                string += "  " + varr[j].upper() + ": "
-                                string += results[j]
-                            self.valuesResult2.setText(string)
-                        else:
-                            results = result.split(',')
-                            string = ""
-                            for i in range(len(results) - 1):
-                                string += "  " + varr[i].upper() + ": "
-                                string += results[i]
-                            self.valuesResult1.setText(string)
-                        self.errorMsg.setText("SOLVED USED GAUSSIAN-ELIMINATION")
-                        self.execTimeLabel.show()
-                        self.excutionTime.show()
-                        self.SecondsLabel.show()
-                elif (method == "LU decomposition"):
-                    print("LU decomposition")
-                    result = LUMainFun(numberOfVariables, fullEquation)
-                    print(result)
+                    self.errorMsg.setStyleSheet(greenStyle)
+                    self.errorMsg.setText("CALCULATING ....")
+                    method = self.method.currentText()
+
+                    # Get Equations..
+                    # Handle spaces in equation
+                    firstEq = self.lineEditEQ1.text()
+                    firstEq = firstEq.replace(" ", "")
+                    firstEq = firstEq.lower()
+                    # Getting the variables in the first eq..
+                    varr = []
+                    for char in firstEq:
+                        if (char.isalpha()):
+                            print(char)
+                            varr.append(char)
+                    # Getting the second eq and handle spaces.
+                    secondEq = self.lineEditEQ2.text()
+                    secondEq = secondEq.replace(" ", "")
+                    secondEq = secondEq.lower()
+                    i = 0
+                    # Check if still the variables entered is less than the nb of varaibles
+                    while (len(varr) != numberOfVariables and i < len(secondEq)):
+                        # Make sure this var is not added before.
+                        if (secondEq[i].isalpha() and not (self.search(varr, secondEq[i]))):
+                            varr.append(secondEq[i])
+                        i += 1
+                    fullEquation = firstEq + "," + secondEq
+                    if (numberOfVariables > 2):
+                        # Getting the third eq and handle spaces.
+                        thirdEq = self.lineEditEQ3.text()
+                        thirdEq = thirdEq.replace(" ", "")
+                        thirdEq = thirdEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(thirdEq)):
+                            # Make sure this var is not added before.
+                            if (thirdEq[i].isalpha() and not (self.search(varr, thirdEq[i]))):
+                                varr.append(thirdEq[i])
+                            i += 1
+                        fullEquation += "," + thirdEq
+
+                    if (numberOfVariables > 3):
+                        # Getting the third eq and handle spaces.
+                        forthEq = self.lineEditEQ4.text()
+                        forthEq = forthEq.replace(" ", "")
+                        forthEq = forthEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(forthEq)):
+                            # Make sure this var is not added before.
+                            if (forthEq[i].isalpha() and not (self.search(varr, forthEq[i]))):
+                                varr.append(forthEq[i])
+                            i += 1
+                        fullEquation += "," + forthEq
+
                     if (numberOfVariables > 4):
-                        result = result.tolist()
-                        string = ""
-                        print(result)
-                        for i in range(4):
-                            string += "  " + varr[i].upper() + ": "
-                            string += str(round(result[i], 3))
-                        self.valuesResult1.setText(string)
-                        string = ""
-                        for j in range(4, (len(result))):
-                            string += "  " + varr[j].upper() + ": "
-                            string += str(round(result[j], 3))
-                        self.valuesResult2.setText(string)
-                    else:
-                        result = result.tolist()
-                        string = ""
-                        for i in range(len(result)):
-                            string += "  " + varr[i].upper() + ": "
-                            string += str(round(result[i], 3))
-                        self.valuesResult1.setText(string)
-                    self.errorMsg.setText("SOLVED USED LU Decomposition")
-                    self.execTimeLabel.show()
-                    self.excutionTime.show()
-                    self.SecondsLabel.show()
-                elif (method == "Gaussian- Jordan"):
-                    print("Gaussian- Jordan")
-                    result = JordonMainFun(numberOfVariables, fullEquation)
-                    if (result == "Error"):
+                        # Getting the third eq and handle spaces.
+                        fifthEq = self.lineEditEQ5.text()
+                        fifthEq = fifthEq.replace(" ", "")
+                        fifthEq = fifthEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(fifthEq)):
+                            # Make sure this var is not added before.
+                            if (fifthEq[i].isalpha() and not (self.search(varr, fifthEq[i]))):
+                                varr.append(fifthEq[i])
+                            i += 1
+                        fullEquation += "," + fifthEq
+
+                    if (numberOfVariables > 5):
+                        # Getting the third eq and handle spaces.
+                        sixthEq = self.lineEditEQ6.text()
+                        sixthEq = sixthEq.replace(" ", "")
+                        sixthEq = sixthEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(sixthEq)):
+                            # Make sure this var is not added before.
+                            if (sixthEq[i].isalpha() and not (self.search(varr, sixthEq[i]))):
+                                varr.append(sixthEq[i])
+                            i += 1
+                        fullEquation += "," + sixthEq
+
+                    if (numberOfVariables > 6):
+                        # Getting the third eq and handle spaces.
+                        seventhEq = self.lineEditEQ7.text()
+                        seventhEq = seventhEq.replace(" ", "")
+                        seventhEq = seventhEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(seventhEq)):
+                            # Make sure this var is not added before.
+                            if (seventhEq[i].isalpha() and not (self.search(varr, seventhEq[i]))):
+                                varr.append(seventhEq[i])
+                            i += 1
+                        fullEquation += "," + seventhEq
+
+                    if (numberOfVariables > 7):
+                        # Getting the third eq and handle spaces.
+                        eigthEq = self.lineEditEQ8.text()
+                        eigthEq = eigthEq.replace(" ", "")
+                        eigthEq = eigthEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(eigthEq)):
+                            # Make sure this var is not added before.
+                            if (eigthEq[i].isalpha() and not (self.search(varr, eigthEq[i]))):
+                                varr.append(eigthEq[i])
+                            i += 1
+                        fullEquation += "," + eigthEq
+
+                    if (numberOfVariables > 8):
+                        # Getting the third eq and handle spaces.
+                        ninthEq = self.lineEditEQ9.text()
+                        ninthEq = ninthEq.replace(" ", "")
+                        ninthEq = ninthEq.lower()
+                        i = 0
+                        # Check if still the variables entered is less than the nb of varaibles
+                        while (len(varr) != numberOfVariables and i < len(ninthEq)):
+                            # Make sure this var is not added before.
+                            if (ninthEq[i].isalpha() and not (self.search(varr, ninthEq[i]))):
+                                varr.append(ninthEq[i])
+                            i += 1
+                        fullEquation += "," + ninthEq
+
+                    if (len(varr) != numberOfVariables):
                         self.errorMsg.setStyleSheet(redStyle)
-                        self.errorMsg.setText("ERROR!: Functions are incorrect")
+                        self.errorMsg.setText("NUMBERS OF VARIABLES ARE NOT CORRECT!")
                     else:
-                        print(result)
                         if (numberOfVariables > 4):
-                            results = result.split(',')
-                            string = ""
-                            for i in range(4):
-                                string += "  " + varr[i].upper() + ": "
-                                string += results[i]
-                            self.valuesResult1.setText(string)
-                            string = ""
-                            for j in range(4, (len(results) - 1)):
-                                string += "  " + varr[j].upper() + ": "
-                                string += results[j]
-                            self.valuesResult2.setText(string)
-                        else:
-                            results = result.split(',')
-                            string = ""
-                            for i in range(len(results) - 1):
-                                string += "  " + varr[i].upper() + ": "
-                                string += results[i]
-                            self.valuesResult1.setText(string)
-                        self.errorMsg.setText("SOLVED USED GAUSSIAN-JORDON")
-                        self.execTimeLabel.show()
-                        self.excutionTime.show()
-                        self.SecondsLabel.show()
-                elif (method == "Gauss-Seidel"):
-                    print("Gauss-Seidel")
-                    init = self.initialPointsInput.text()
-                    if(init == ""):
-                        self.errorMsg.setStyleSheet(redStyle)
-                        self.errorMsg.setText("PLEASE WRITE DOWN THE INITAL POINTS!")
-                    else:
-                        initList = init.split(' ')
-                        if(len(initList) != numberOfVariables):
-                            self.errorMsg.setStyleSheet(redStyle)
-                            self.errorMsg.setText("SOME INITAL POINTS ARE MISSED!")
-                        else:
-                            newlist = [float(i) for i in initList]
-                            result = SeidalMainFun(numberOfVariables, fullEquation, int(self.maxIterations.text()),
-                                                   float(self.Epsilon.text()), newlist)
-                            result = result.tolist()
-                            string = ""
-                            print(result)
                             self.valuesResult2.show()
-                            for i in range(2):
-                                string += "  " + varr[i].upper() + ": "
-                                string += str(result[i])
-                            self.valuesResult1.setText(string)
-                            string = ""
-                            for j in range(2, (len(result))):
-                                string += "  " + varr[j].upper() + ": "
-                                string += str(result[j])
-                            self.valuesResult2.setText(string)
+                        else:
+                            self.valuesResult2.hide()
+                        print(fullEquation)
+                        if (method == "Gaussian-Elimination"):
+                            print("Gaussian-Elimination")
+                            result = mainFunc(numberOfVariables, fullEquation)
+                            if (result == "Error"):
+                                self.errorMsg.setStyleSheet(redStyle)
+                                self.errorMsg.setText("ERROR!: Functions are incorrect")
+                            else:
+                                print(result)
+                                if (numberOfVariables > 4):
+                                    results = result.split(',')
+                                    string = ""
+                                    for i in range(4):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += results[i]
+                                    self.valuesResult1.setText(string)
+                                    string = ""
+                                    for j in range(4, (len(results)-1)):
+                                        string += "  " + varr[j].upper() + ": "
+                                        string += results[j]
+                                    self.valuesResult2.setText(string)
+                                else:
+                                    results = result.split(',')
+                                    string = ""
+                                    for i in range(len(results) - 1):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += results[i]
+                                    self.valuesResult1.setText(string)
+                                self.errorMsg.setText("SOLVED USED GAUSSIAN-ELIMINATION")
+                                self.execTimeLabel.show()
+                                self.excutionTime.show()
+                                self.SecondsLabel.show()
+                        elif (method == "LU decomposition"):
+                            print("LU decomposition")
+                            result = LUMainFun(numberOfVariables, fullEquation)
+                            print(result)
+                            if (numberOfVariables > 4):
+                                result = result.tolist()
+                                string = ""
+                                print(result)
+                                for i in range(4):
+                                    string += "  " + varr[i].upper() + ": "
+                                    string += str(round(result[i], 3))
+                                self.valuesResult1.setText(string)
+                                string = ""
+                                for j in range(4, (len(result))):
+                                    string += "  " + varr[j].upper() + ": "
+                                    string += str(round(result[j], 3))
+                                self.valuesResult2.setText(string)
+                            else:
+                                result = result.tolist()
+                                string = ""
+                                for i in range(len(result)):
+                                    string += "  " + varr[i].upper() + ": "
+                                    string += str(round(result[i], 3))
+                                self.valuesResult1.setText(string)
                             self.errorMsg.setText("SOLVED USED LU Decomposition")
                             self.execTimeLabel.show()
                             self.excutionTime.show()
                             self.SecondsLabel.show()
+                        elif (method == "Gaussian- Jordan"):
+                            print("Gaussian- Jordan")
+                            result = JordonMainFun(numberOfVariables, fullEquation)
+                            if (result == "Error"):
+                                self.errorMsg.setStyleSheet(redStyle)
+                                self.errorMsg.setText("ERROR!: Functions are incorrect")
+                            else:
+                                print(result)
+                                if (numberOfVariables > 4):
+                                    results = result.split(',')
+                                    string = ""
+                                    for i in range(4):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += results[i]
+                                    self.valuesResult1.setText(string)
+                                    string = ""
+                                    for j in range(4, (len(results) - 1)):
+                                        string += "  " + varr[j].upper() + ": "
+                                        string += results[j]
+                                    self.valuesResult2.setText(string)
+                                else:
+                                    results = result.split(',')
+                                    string = ""
+                                    for i in range(len(results) - 1):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += results[i]
+                                    self.valuesResult1.setText(string)
+                                self.errorMsg.setText("SOLVED USED GAUSSIAN-JORDON")
+                                self.execTimeLabel.show()
+                                self.excutionTime.show()
+                                self.SecondsLabel.show()
+                        elif (method == "Gauss-Seidel"):
+                            print("Gauss-Seidel")
+                            init = self.initialPointsInput.text()
+                            if(init == ""):
+                                self.errorMsg.setStyleSheet(redStyle)
+                                self.errorMsg.setText("PLEASE WRITE DOWN THE INITAL POINTS!")
+                            else:
+                                initList = init.split(' ')
+                                if(len(initList) != numberOfVariables):
+                                    self.errorMsg.setStyleSheet(redStyle)
+                                    self.errorMsg.setText("SOME INITAL POINTS ARE MISSED!")
+                                else:
+                                    newlist = [float(i) for i in initList]
+                                    result = SeidalMainFun(numberOfVariables, fullEquation, int(self.maxIterations.text()),
+                                                           float(self.Epsilon.text()), newlist)
+                                    result = result.tolist()
+                                    string = ""
+                                    print(result)
+                                    self.valuesResult2.show()
+                                    for i in range(2):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += str(result[i])
+                                    self.valuesResult1.setText(string)
+                                    string = ""
+                                    for j in range(2, (len(result))):
+                                        string += "  " + varr[j].upper() + ": "
+                                        string += str(result[j])
+                                    self.valuesResult2.setText(string)
+                                    self.errorMsg.setText("SOLVED USED LU Decomposition")
+                                    self.execTimeLabel.show()
+                                    self.excutionTime.show()
+                                    self.SecondsLabel.show()
+                        else:
+                            print("All methods")
+        else:
+                input_file = open("../Views/input.txt","r")
+                if os.path.isfile('../Views/input.txt'):
+                        print("File exist")
                 else:
-                    print("All methods")
+                        print("File not exist")
+                numberOfVariables = int(input_file.readline().strip("\n"))
+                method = input_file.readline().strip("\n")
+                fullEquation = input_file.readline().strip("\n")
+                varr =[]
+                for char in fullEquation:
+                        if (char.isalpha()):
+
+                                varr.append(char)
+                for i in range(numberOfVariables-1):
+                        fullEquation = fullEquation + "," + input_file.readline().strip("\n")
+                initial_values = []
+                initial_values = input_file.readline().split()
+                print(initial_values)
+
+                if method == "Gaussian-elimination":
+                        result = mainFunc(numberOfVariables, fullEquation)
+                        if (result == "Error"):
+                                self.errorMsg.setStyleSheet(redStyle)
+                                self.errorMsg.setText("ERROR!: Functions are incorrect")
+                        else:
+                                print(result)
+                                if (numberOfVariables > 4):
+                                        results = result.split(',')
+                                        string = ""
+                                        for i in range(4):
+                                                string += "  " + varr[i].upper() + ": "
+                                                string += results[i]
+                                        self.valuesResult1.setText(string)
+                                        string = ""
+                                        for j in range(4, (len(results) - 1)):
+                                                string += "  " + varr[j].upper() + ": "
+                                                string += results[j]
+                                        self.valuesResult2.setText(string)
+                                else:
+                                        results = result.split(',')
+                                        string = ""
+                                        for i in range(len(results) - 1):
+                                                string += "  " + varr[i].upper() + ": "
+                                                string += results[i]
+                                        self.valuesResult1.setText(string)
+                                self.errorMsg.setText("SOLVED USED GAUSSIAN-ELIMINATION")
+                                self.execTimeLabel.show()
+                                self.excutionTime.show()
+                                self.SecondsLabel.show()
+                elif method == "Gaussian-jordan":
+
+                        result = JordonMainFun(numberOfVariables, fullEquation)
+                        if (numberOfVariables > 4):
+                                results = result.split(',')
+                                string = ""
+                                for i in range(4):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += results[i]
+                                self.valuesResult1.setText(string)
+                                string = ""
+                                for j in range(4, (len(results) - 1)):
+                                        string += "  " + varr[j].upper() + ": "
+                                        string += results[j]
+                                        self.valuesResult2.setText(string)
+                        else:
+                                results = result.split(',')
+                                string = ""
+                                for i in range(len(results) - 1):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += results[i]
+                                self.valuesResult1.setText(string)
+                        self.errorMsg.setText("SOLVED USED GAUSSIAN-JORDON")
+                        self.execTimeLabel.show()
+                        self.excutionTime.show()
+                        self.SecondsLabel.show()
+
+                elif method == "Gaussian-Seidel":
+                        result = SeidalMainFun(numberOfVariables, fullEquation,50,
+                                               0.00001, [float(i) for i in initial_values])
+                        result = result.tolist()
+                        string = ""
+                        print(result)
+                        self.valuesResult2.show()
+                        for i in range(2):
+                                string += "  " + varr[i].upper() + ": "
+                                string += str(result[i])
+                        self.valuesResult1.setText(string)
+                        string = ""
+                        for j in range(2, (len(result))):
+                                string += "  " + varr[j].upper() + ": "
+                                string += str(result[j])
+                        self.valuesResult2.setText(string)
+                        self.errorMsg.setText("SOLVED USED LU Decomposition")
+                        self.execTimeLabel.show()
+                        self.excutionTime.show()
+                        self.SecondsLabel.show()
+                elif method == "LU decomposition":
+                        print(numberOfVariables)
+                        print(fullEquation)
+                        result = LUMainFun(numberOfVariables, fullEquation)
+
+                        if (numberOfVariables > 4):
+                                result = result.tolist()
+                                string = ""
+                                print(result)
+                                for i in range(4):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += str(round(result[i], 3))
+                                self.valuesResult1.setText(string)
+                                string = ""
+                                for j in range(4, (len(result))):
+                                        string += "  " + varr[j].upper() + ": "
+                                        string += str(round(result[j], 3))
+                                self.valuesResult2.setText(string)
+                        else:
+                                result = result.tolist()
+                                string = ""
+                                for i in range(len(result)):
+                                        string += "  " + varr[i].upper() + ": "
+                                        string += str(round(result[i], 3))
+                                self.valuesResult1.setText(string)
+                        self.errorMsg.setText("SOLVED USED LU Decomposition")
+                        self.execTimeLabel.show()
+                        self.excutionTime.show()
+                        self.SecondsLabel.show()
+                else:
+                        pass
+                #
+
+
+
+
+
 
 
     def retranslateUi(self, MainWindow):

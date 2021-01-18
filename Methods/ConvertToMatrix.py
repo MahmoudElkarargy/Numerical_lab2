@@ -30,5 +30,5 @@ def inputToMatrix(numberOfVariables, equations):
                 matrix[eqnNum][coef] = float(eqnCoef[coef])
             coef += 1
         eqnNum += 1
-    # print("matrix: " + matrix)
+    print(matrix)
     return matrix
