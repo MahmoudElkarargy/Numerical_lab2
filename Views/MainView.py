@@ -868,8 +868,7 @@ class Ui_MainWindow(object):
                 if method == "Gaussian-elimination":
                         result = mainFunc(numberOfVariables, fullEquation)
                         if (result == "Error"):
-                                self.errorMsg.setStyleSheet(redStyle)
-                                self.errorMsg.setText("ERROR!: Functions are incorrect")
+                                self.valuesResult1.setText("no solution")
                         else:
                                 print(result)
                                 if (numberOfVariables > 4):
@@ -910,6 +909,8 @@ class Ui_MainWindow(object):
                                         string += "  " + varr[j].upper() + ": "
                                         string += results[j]
                                         self.valuesResult2.setText(string)
+                        elif result == "Error":
+                                self.valuesResult1.setText("no solution")
                         else:
                                 results = result.split(',')
                                 string = ""
