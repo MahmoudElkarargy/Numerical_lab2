@@ -13,7 +13,7 @@ def GaussianElim(numberOfVariables, inputEquations):
     a = inputToMatrix(numberOfVariables, inputEquations)
     for i in range(numberOfVariables):
         if a[i][i] == 0.0:
-            sys.exit('Divide by zero detected!')
+            return "Error"
 
         for j in range(i + 1, numberOfVariables):
             ratio = a[j][i] / a[i][i]
@@ -36,7 +36,7 @@ def GaussianElim(numberOfVariables, inputEquations):
     # Displaying solution
     result = ""
     for i in range(numberOfVariables):
-        result += '%0.2f'% x[i] + ' , '
+        result += '%0.2f'% x[i] + ','
     return result
 
 def mainFunc(numberOfVariables, inputEquations):

@@ -23,9 +23,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>230</x>
       <y>20</y>
-      <width>411</width>
+      <width>501</width>
       <height>60</height>
      </rect>
     </property>
@@ -38,7 +38,7 @@ font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
 </string>
     </property>
     <property name="text">
-     <string>Numerical Project</string>
+     <string>* Numerical Project *</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -159,22 +159,22 @@ text-align: center;
       <number>9</number>
      </property>
      <property name="value">
-      <number>2</number>
+      <number>9</number>
      </property>
     </widget>
     <widget class="QLabel" name="errorMsg">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>50</y>
-       <width>351</width>
+       <x>100</x>
+       <y>60</y>
+       <width>291</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background: transparent;
 color:rgb(252, 1, 7);
-font-size: 14px;
+font-size: 16px;
 font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;</string>
      </property>
      <property name="text">
@@ -620,6 +620,9 @@ font-size: 16px;
 font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
 color: rgb(234, 255, 253);</string>
      </property>
+     <property name="minimum">
+      <number>5</number>
+     </property>
      <property name="maximum">
       <number>100000000</number>
      </property>
@@ -789,6 +792,14 @@ font-size: 14px;
 font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
 color: rgb(234, 255, 253);</string>
      </property>
+     <property name="currentText">
+      <string>All Methods</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>All Methods</string>
+      </property>
+     </item>
      <item>
       <property name="text">
        <string>Gaussian-Elimination</string>
@@ -807,11 +818,6 @@ color: rgb(234, 255, 253);</string>
      <item>
       <property name="text">
        <string>Gauss-Seidel</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>All</string>
       </property>
      </item>
     </widget>
