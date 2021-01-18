@@ -10,65 +10,26 @@ input = input('Enter your equations separated by "," ')
 a = inputToMatrix(n, input)
 
 
-def luDecomposition(mat, n):
-    mat = np.delete(mat, n, 1)
-    lower = [[0 for x in range(n)]
-             for y in range(n)]
-    upper = [[0 for x in range(n)]
-             for y in range(n)]
+def luDecomposition(A, n):
+    L = [[0.0] * n for i in range(n)]
+    U = [[0.0] * n for i in range(n)]
+    for j in range(n):
+        L[j][j] = 1.0
+        for i in range(j + 1):
+            s1 = sum(U[k][j] * L[i][k] for k in range(i))
+            U[i][j] = A[i][j] - s1
+        for i in range(j, n):
+            s2 = sum(U[k][j] * L[i][k] for k in range(j))
+            L[i][j] = (A[i][j] - s2) / U[j][j]
+    return (L, U)
 
-    # Decomposing matrix into Upper
-    # and Lower triangular matrix
-    for i in range(n):
-
-        # Upper Triangular
-        for k in range(i, n):
-
-            # Summation of L(i, j) * U(j, k)
-            sum = 0
-            for j in range(i):
-                sum += (lower[i][j] * upper[j][k])
-
-            # Evaluating U(i, k)
-            upper[i][k] = mat[i][k] - sum
-
-        # Lower Triangular
-        for k in range(i, n):
-            if (i == k):
-                lower[i][i] = 1  # Diagonal as 1
-            else:
-
-                # Summation of L(k, j) * U(j, i)
-                sum = 0
-                for j in range(i):
-                    sum += (lower[k][j] * upper[j][i])
-
-                # Evaluating L(k, i)
-                lower[k][i] = int((mat[k][i] - sum) /
-                                  upper[i][i])
-    return lower, upper
 
 
 lower, upper = luDecomposition(a,n)
-L= np.array(lower)
-U=np.array(upper)
-
-# n = L.shape[0]
-z = np.zeros(n)
-for i in range(n):
-    z[i] = a[i][n]
-    for j in range(i):
-        z[i] -= L[i, j] * z[j]
-    z[i] = z[i] / L[i, i]
-
-print(z)
-
-x = np.zeros(n)
-for i in range(n - 1, -1, -1):
-    x[i] = z[i]
-    for j in range(i + 1, n):
-        x[i] = x[i] - U[i][j] * x[j]
-    x[i] = x[i] / U[i][i]
+L= np.array(lower, dtype=np.double)
+U=np.array(upper, dtype=np.double)
+D = np.linalg.inv(L).dot(a[ :,n])
+x = np.linalg.inv(U).dot(D)
 
 print(x)
 print("A:")

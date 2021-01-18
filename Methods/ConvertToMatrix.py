@@ -2,7 +2,7 @@ import numpy
 import regex as re
 
 def inputToMatrix(numberOfVariables, equations):
-    matrix = numpy.zeros((numberOfVariables, numberOfVariables + 1))
+    matrix = numpy.zeros((numberOfVariables, numberOfVariables + 1),dtype=numpy.double)
     eqnNum = 0
     equations = equations.split(',')
 
