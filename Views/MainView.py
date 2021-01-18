@@ -78,10 +78,10 @@ class Ui_MainWindow(object):
         self.nbOfVariables.setProperty("value", 9)
         self.nbOfVariables.setObjectName("nbOfVariables")
         self.errorMsg = QtWidgets.QLabel(self.groupBox)
-        self.errorMsg.setGeometry(QtCore.QRect(100, 60, 291, 31))
+        self.errorMsg.setGeometry(QtCore.QRect(20, 60, 411, 31))
         self.errorMsg.setStyleSheet("background: transparent;\n"
 "color:rgb(252, 1, 7);\n"
-"font-size: 16px;\n"
+"font-size: 18px;\n"
 "font-family: \"Lucida Console\", \"Courier New\", monospace;")
         self.errorMsg.setObjectName("errorMsg")
         self.labelEqu1 = QtWidgets.QLabel(self.groupBox)
@@ -487,68 +487,77 @@ class Ui_MainWindow(object):
         self.valuesResult2.hide()
 
     def setMethod(self):
-            if (self.method.currentText() == "Gaussian- Jordan" or self.method.currentText() == "All"):
-                    self.initialPointsInput.show()
-                    self.initialLabel.show()
-                    self.showGraph.show()
-                    self.showIterations.show()
-            else:
-                    self.initialLabel.hide()
-                    self.initialPointsInput.hide()
-                    self.showIterations.hide()
-                    self.showGraph.hide()
-            self.execTimeLabel.hide()
-            self.excutionTime.hide()
-            self.SecondsLabel.hide()
+        if (self.method.currentText() == "Gaussian- Jordan" or self.method.currentText() == "All"):
+            self.initialPointsInput.show()
+            self.initialLabel.show()
+            self.showGraph.show()
+            self.showIterations.show()
+        else:
+            self.initialLabel.hide()
+            self.initialPointsInput.hide()
+            self.showIterations.hide()
+            self.showGraph.hide()
+        self.execTimeLabel.hide()
+        self.excutionTime.hide()
+        self.SecondsLabel.hide()
+        self.valuesResult1.setText("")
+        self.valuesResult2.setText("")
+        self.errorMsg.setText("")
 
     def readFromFile(self):
-            if (self.checkBox.isChecked()):
-                    self.groupBox.hide()
-                    self.parametersGroup.hide()
-                    self.MethodsGroup.hide()
-            else:
-                    self.groupBox.show()
-                    self.parametersGroup.show()
-                    self.MethodsGroup.show()
+        if (self.checkBox.isChecked()):
+            self.groupBox.hide()
+            self.parametersGroup.hide()
+            self.MethodsGroup.hide()
+        else:
+            self.groupBox.show()
+            self.parametersGroup.show()
+            self.MethodsGroup.show()
 
     def setNumberOfEquations(self):
-            numberOfEqu = int(self.nbOfVariables.text())
-            self.labelEqu3.hide()
-            self.labelEqu4.hide()
-            self.labelEqu5.hide()
-            self.labelEqu6.hide()
-            self.labelEqu7.hide()
-            self.labelEqu8.hide()
-            self.labelEqu9.hide()
-            self.lineEditEQ9.hide()
-            self.lineEditEQ3.hide()
-            self.lineEditEQ4.hide()
-            self.lineEditEQ5.hide()
-            self.lineEditEQ6.hide()
-            self.lineEditEQ7.hide()
-            self.lineEditEQ8.hide()
-            self.lineEditEQ9.hide()
-            if (numberOfEqu > 2):
-                    self.labelEqu3.show()
-                    self.lineEditEQ3.show()
-            if (numberOfEqu > 3):
-                    self.labelEqu4.show()
-                    self.lineEditEQ4.show()
-            if (numberOfEqu > 4):
-                    self.labelEqu5.show()
-                    self.lineEditEQ5.show()
-            if (numberOfEqu > 5):
-                    self.labelEqu6.show()
-                    self.lineEditEQ6.show()
-            if (numberOfEqu > 6):
-                    self.labelEqu7.show()
-                    self.lineEditEQ7.show()
-            if (numberOfEqu > 7):
-                    self.labelEqu8.show()
-                    self.lineEditEQ8.show()
-            if (numberOfEqu > 8):
-                    self.labelEqu9.show()
-                    self.lineEditEQ9.show()
+        numberOfEqu = int(self.nbOfVariables.text())
+        self.labelEqu3.hide()
+        self.labelEqu4.hide()
+        self.labelEqu5.hide()
+        self.labelEqu6.hide()
+        self.labelEqu7.hide()
+        self.labelEqu8.hide()
+        self.labelEqu9.hide()
+        self.lineEditEQ9.hide()
+        self.lineEditEQ3.hide()
+        self.lineEditEQ4.hide()
+        self.lineEditEQ5.hide()
+        self.lineEditEQ6.hide()
+        self.lineEditEQ7.hide()
+        self.lineEditEQ8.hide()
+        self.lineEditEQ9.hide()
+        self.valuesResult1.setText("")
+        self.valuesResult2.setText("")
+        self.execTimeLabel.hide()
+        self.excutionTime.hide()
+        self.SecondsLabel.hide()
+        self.errorMsg.setText("")
+        if (numberOfEqu > 2):
+            self.labelEqu3.show()
+            self.lineEditEQ3.show()
+        if (numberOfEqu > 3):
+            self.labelEqu4.show()
+            self.lineEditEQ4.show()
+        if (numberOfEqu > 4):
+            self.labelEqu5.show()
+            self.lineEditEQ5.show()
+        if (numberOfEqu > 5):
+            self.labelEqu6.show()
+            self.lineEditEQ6.show()
+        if (numberOfEqu > 6):
+            self.labelEqu7.show()
+            self.lineEditEQ7.show()
+        if (numberOfEqu > 7):
+            self.labelEqu8.show()
+            self.lineEditEQ8.show()
+        if (numberOfEqu > 8):
+            self.labelEqu9.show()
+            self.lineEditEQ9.show()
 
     def search(self, listt, platform):
         for i in range(len(listt)):
@@ -557,202 +566,202 @@ class Ui_MainWindow(object):
         return False
 
     def calculateButtonClicked(self):
-            redStyle = 'background: transparent; color:rgb(252, 1, 7);font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
-            greenStyle = 'background: transparent; color:lightgreen;font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
-            self.errorMsg.show()
-            numberOfVariables = int(self.nbOfVariables.text())
-            if (self.lineEditEQ1.text() == "" or self.lineEditEQ2.text() == "" or
-                    (self.lineEditEQ3.text() == "" and numberOfVariables > 2) or
-                    (self.lineEditEQ4.text() == "" and numberOfVariables > 3) or
-                    (self.lineEditEQ5.text() == "" and numberOfVariables > 4) or
-                    (self.lineEditEQ6.text() == "" and numberOfVariables > 5) or
-                    (self.lineEditEQ7.text() == "" and numberOfVariables > 6) or
-                    (self.lineEditEQ8.text() == "" and numberOfVariables > 7) or
-                    (self.lineEditEQ9.text() == "" and numberOfVariables > 8)
-            ):
-                    self.errorMsg.setStyleSheet(redStyle)
-                    self.errorMsg.setText("PLEASE FILL ALL THE EQUATIONS!")
+        redStyle = 'background: transparent; color:rgb(252, 1, 7);font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
+        greenStyle = 'background: transparent; color:lightgreen;font-size: 14px;font-family: "Lucida Console", "Courier New", monospace;'
+        self.errorMsg.show()
+        numberOfVariables = int(self.nbOfVariables.text())
+        if (self.lineEditEQ1.text() == "" or self.lineEditEQ2.text() == "" or
+                (self.lineEditEQ3.text() == "" and numberOfVariables > 2) or
+                (self.lineEditEQ4.text() == "" and numberOfVariables > 3) or
+                (self.lineEditEQ5.text() == "" and numberOfVariables > 4) or
+                (self.lineEditEQ6.text() == "" and numberOfVariables > 5) or
+                (self.lineEditEQ7.text() == "" and numberOfVariables > 6) or
+                (self.lineEditEQ8.text() == "" and numberOfVariables > 7) or
+                (self.lineEditEQ9.text() == "" and numberOfVariables > 8)
+        ):
+            self.errorMsg.setStyleSheet(redStyle)
+            self.errorMsg.setText("PLEASE FILL ALL THE EQUATIONS!")
+        else:
+            self.errorMsg.setStyleSheet(greenStyle)
+            self.errorMsg.setText("CALCULATING ....")
+            method = self.method.currentText()
+
+            # Get Equations..
+            # Handle spaces in equation
+            firstEq = self.lineEditEQ1.text()
+            firstEq = firstEq.replace(" ", "")
+            firstEq = firstEq.lower()
+            # Getting the variables in the first eq..
+            varr = []
+            for char in firstEq:
+                if (char.isalpha()):
+                    print(char)
+                    varr.append(char)
+            # Getting the second eq and handle spaces.
+            secondEq = self.lineEditEQ2.text()
+            secondEq = secondEq.replace(" ", "")
+            secondEq = secondEq.lower()
+            i = 0
+            # Check if still the variables entered is less than the nb of varaibles
+            while (len(varr) != numberOfVariables and i < len(secondEq)):
+                # Make sure this var is not added before.
+                if (secondEq[i].isalpha() and not (self.search(varr, secondEq[i]))):
+                    varr.append(secondEq[i])
+                i += 1
+            fullEquation = firstEq + "," + secondEq
+            if (numberOfVariables > 2):
+                # Getting the third eq and handle spaces.
+                thirdEq = self.lineEditEQ3.text()
+                thirdEq = thirdEq.replace(" ", "")
+                thirdEq = thirdEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(thirdEq)):
+                    # Make sure this var is not added before.
+                    if (thirdEq[i].isalpha() and not (self.search(varr, thirdEq[i]))):
+                        varr.append(thirdEq[i])
+                    i += 1
+                fullEquation += "," + thirdEq
+
+            if (numberOfVariables > 3):
+                # Getting the third eq and handle spaces.
+                forthEq = self.lineEditEQ4.text()
+                forthEq = forthEq.replace(" ", "")
+                forthEq = forthEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(forthEq)):
+                    # Make sure this var is not added before.
+                    if (forthEq[i].isalpha() and not (self.search(varr, forthEq[i]))):
+                        varr.append(forthEq[i])
+                    i += 1
+                fullEquation += "," + forthEq
+
+            if (numberOfVariables > 4):
+                # Getting the third eq and handle spaces.
+                fifthEq = self.lineEditEQ5.text()
+                fifthEq = fifthEq.replace(" ", "")
+                fifthEq = fifthEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(fifthEq)):
+                    # Make sure this var is not added before.
+                    if (fifthEq[i].isalpha() and not (self.search(varr, fifthEq[i]))):
+                        varr.append(fifthEq[i])
+                    i += 1
+                fullEquation += "," + fifthEq
+
+            if (numberOfVariables > 5):
+                # Getting the third eq and handle spaces.
+                sixthEq = self.lineEditEQ6.text()
+                sixthEq = sixthEq.replace(" ", "")
+                sixthEq = sixthEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(sixthEq)):
+                    # Make sure this var is not added before.
+                    if (sixthEq[i].isalpha() and not (self.search(varr, sixthEq[i]))):
+                        varr.append(sixthEq[i])
+                    i += 1
+                fullEquation += "," + sixthEq
+
+            if (numberOfVariables > 6):
+                # Getting the third eq and handle spaces.
+                seventhEq = self.lineEditEQ7.text()
+                seventhEq = seventhEq.replace(" ", "")
+                seventhEq = seventhEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(seventhEq)):
+                    # Make sure this var is not added before.
+                    if (seventhEq[i].isalpha() and not (self.search(varr, seventhEq[i]))):
+                        varr.append(seventhEq[i])
+                    i += 1
+                fullEquation += "," + seventhEq
+
+            if (numberOfVariables > 7):
+                # Getting the third eq and handle spaces.
+                eigthEq = self.lineEditEQ8.text()
+                eigthEq = eigthEq.replace(" ", "")
+                eigthEq = eigthEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(eigthEq)):
+                    # Make sure this var is not added before.
+                    if (eigthEq[i].isalpha() and not (self.search(varr, eigthEq[i]))):
+                        varr.append(eigthEq[i])
+                    i += 1
+                fullEquation += "," + eigthEq
+
+            if (numberOfVariables > 8):
+                # Getting the third eq and handle spaces.
+                ninthEq = self.lineEditEQ9.text()
+                ninthEq = ninthEq.replace(" ", "")
+                ninthEq = ninthEq.lower()
+                i = 0
+                # Check if still the variables entered is less than the nb of varaibles
+                while (len(varr) != numberOfVariables and i < len(ninthEq)):
+                    # Make sure this var is not added before.
+                    if (ninthEq[i].isalpha() and not (self.search(varr, ninthEq[i]))):
+                        varr.append(ninthEq[i])
+                    i += 1
+                fullEquation += "," + ninthEq
+
+            if (len(varr) != numberOfVariables):
+                self.errorMsg.setStyleSheet(redStyle)
+                self.errorMsg.setText("NUMBERS OF VARIABLES ARE NOT CORRECT!")
             else:
-                    self.errorMsg.setStyleSheet(greenStyle)
-                    self.errorMsg.setText("CALCULATING ....")
-                    method = self.method.currentText()
-
-                    # Get Equations..
-                    # Handle spaces in equation
-                    firstEq = self.lineEditEQ1.text()
-                    firstEq = firstEq.replace(" ", "")
-                    firstEq = firstEq.lower()
-                    # Getting the variables in the first eq..
-                    varr = []
-                    for char in firstEq:
-                        if(char.isalpha()):
-                            print(char)
-                            varr.append(char)
-                    # Getting the second eq and handle spaces.
-                    secondEq = self.lineEditEQ2.text()
-                    secondEq = secondEq.replace(" ", "")
-                    secondEq = secondEq.lower()
-                    i = 0
-                    # Check if still the variables entered is less than the nb of varaibles
-                    while (len(varr) != numberOfVariables and i < len(secondEq)):
-                        # Make sure this var is not added before.
-                        if(secondEq[i].isalpha() and not(self.search(varr, secondEq[i]))):
-                            varr.append(secondEq[i])
-                        i += 1
-                    fullEquation = firstEq + "," + secondEq
-                    if(numberOfVariables > 2):
-                        # Getting the third eq and handle spaces.
-                        thirdEq = self.lineEditEQ3.text()
-                        thirdEq = thirdEq.replace(" ", "")
-                        thirdEq = thirdEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(thirdEq)):
-                            # Make sure this var is not added before.
-                            if (thirdEq[i].isalpha() and not (self.search(varr, thirdEq[i]))):
-                                varr.append(thirdEq[i])
-                            i += 1
-                        fullEquation += "," + thirdEq
-
-                    if (numberOfVariables > 3):
-                        # Getting the third eq and handle spaces.
-                        forthEq = self.lineEditEQ4.text()
-                        forthEq = forthEq.replace(" ", "")
-                        forthEq = forthEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(forthEq)):
-                            # Make sure this var is not added before.
-                            if (forthEq[i].isalpha() and not (self.search(varr, forthEq[i]))):
-                                varr.append(forthEq[i])
-                            i += 1
-                        fullEquation += "," + forthEq
-
-                    if (numberOfVariables > 4):
-                        # Getting the third eq and handle spaces.
-                        fifthEq = self.lineEditEQ5.text()
-                        fifthEq = fifthEq.replace(" ", "")
-                        fifthEq = fifthEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(fifthEq)):
-                            # Make sure this var is not added before.
-                            if (fifthEq[i].isalpha() and not (self.search(varr, fifthEq[i]))):
-                                varr.append(fifthEq[i])
-                            i += 1
-                        fullEquation += "," + fifthEq
-
-                    if (numberOfVariables > 5):
-                        # Getting the third eq and handle spaces.
-                        sixthEq = self.lineEditEQ6.text()
-                        sixthEq = sixthEq.replace(" ", "")
-                        sixthEq = sixthEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(sixthEq)):
-                            # Make sure this var is not added before.
-                            if (sixthEq[i].isalpha() and not (self.search(varr, sixthEq[i]))):
-                                varr.append(sixthEq[i])
-                            i += 1
-                        fullEquation += "," + sixthEq
-
-                    if (numberOfVariables > 6):
-                        # Getting the third eq and handle spaces.
-                        seventhEq = self.lineEditEQ7.text()
-                        seventhEq = seventhEq.replace(" ", "")
-                        seventhEq = seventhEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(seventhEq)):
-                            # Make sure this var is not added before.
-                            if (seventhEq[i].isalpha() and not (self.search(varr, seventhEq[i]))):
-                                varr.append(seventhEq[i])
-                            i += 1
-                        fullEquation += "," + seventhEq
-
-                    if (numberOfVariables > 7):
-                        # Getting the third eq and handle spaces.
-                        eigthEq = self.lineEditEQ8.text()
-                        eigthEq = eigthEq.replace(" ", "")
-                        eigthEq = eigthEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(eigthEq)):
-                            # Make sure this var is not added before.
-                            if (eigthEq[i].isalpha() and not (self.search(varr, eigthEq[i]))):
-                                varr.append(eigthEq[i])
-                            i += 1
-                        fullEquation += "," + eigthEq
-
-                    if (numberOfVariables > 8):
-                        # Getting the third eq and handle spaces.
-                        ninthEq = self.lineEditEQ9.text()
-                        ninthEq = ninthEq.replace(" ", "")
-                        ninthEq = ninthEq.lower()
-                        i = 0
-                        # Check if still the variables entered is less than the nb of varaibles
-                        while (len(varr) != numberOfVariables and i < len(ninthEq)):
-                            # Make sure this var is not added before.
-                            if (ninthEq[i].isalpha() and not (self.search(varr, ninthEq[i]))):
-                                varr.append(ninthEq[i])
-                            i += 1
-                        fullEquation += "," + ninthEq
-
-                    if (len(varr) != numberOfVariables):
+                if (numberOfVariables > 4):
+                    self.valuesResult2.show()
+                else:
+                    self.valuesResult2.hide()
+                print(fullEquation)
+                if (method == "Gaussian-Elimination"):
+                    print("Gaussian-Elimination")
+                    result = mainFunc(numberOfVariables, fullEquation)
+                    if (result == "Error"):
                         self.errorMsg.setStyleSheet(redStyle)
-                        self.errorMsg.setText("NUMBERS OF VARIABLES ARE NOT CORRECT!")
+                        self.errorMsg.setText("ERROR!: Functions are incorrect")
                     else:
+                        print(result)
                         if (numberOfVariables > 4):
-                                self.valuesResult2.show()
+                            results = result.split(',')
+                            string = ""
+                            for i in range(4):
+                                string += "  " + varr[i].upper() + ": "
+                                string += results[i]
+                            self.valuesResult1.setText(string)
+                            for i in range(4, len(results - 1)):
+                                string += "  " + varr[i].upper() + ": "
+                                string += results[i]
+                            self.valuesResult2.setText(string)
                         else:
-                                self.valuesResult2.hide()
-                        print(fullEquation)
-                        if (method == "Gaussian-Elimination"):
-                            print("Gaussian-Elimination")
-                            result = mainFunc(numberOfVariables, fullEquation)
-                            if(result == "Error"):
-                                self.errorMsg.setStyleSheet(redStyle)
-                                self.errorMsg.setText("ERROR!: Functions are incorrect")
-                            else:
-                                print(result)
-                                if(numberOfVariables > 4):
-                                    results = result.split(',')
-                                    string = ""
-                                    for i in range(4):
-                                        string += "  " + varr[i].upper() + ": "
-                                        string += results[i]
-                                    self.valuesResult1.setText(string)
-                                    for i in range(4, len(results - 1)):
-                                        string += "  " + varr[i].upper() + ": "
-                                        string += results[i]
-                                    self.valuesResult2.setText(string)
-                                else:
-                                    results = result.split(',')
-                                    string = ""
-                                    for i in range(len(results) - 1):
-                                        string += "  " + varr[i].upper() + ": "
-                                        string += results[i]
-                                    self.valuesResult1.setText(string)
-
-                        elif (method == "LU decomposition"):
-                            print("LU decomposition")
-                        elif (method == "Gaussian- Jordan"):
-                            print("Gaussian- Jordan")
-
-                        elif (method == "Gauss-Seidel"):
-                            print("Gauss-Seidel")
-                        else:
-                            print("All methods")
-
-
+                            results = result.split(',')
+                            string = ""
+                            for i in range(len(results) - 1):
+                                string += "  " + varr[i].upper() + ": "
+                                string += results[i]
+                            self.valuesResult1.setText(string)
+                        self.errorMsg.setText("SOLVED USED GAUSSIAN-ELIMINATION")
                         self.execTimeLabel.show()
                         self.excutionTime.show()
                         self.SecondsLabel.show()
 
+                elif (method == "LU decomposition"):
+                    print("LU decomposition")
+                elif (method == "Gaussian- Jordan"):
+                    print("Gaussian- Jordan")
+
+                elif (method == "Gauss-Seidel"):
+                    print("Gauss-Seidel")
+                else:
+                    print("All methods")
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "LAB TWO"))
-        self.label.setText(_translate("MainWindow", "Numerical Project"))
+        self.label.setText(_translate("MainWindow", "* Numerical Project *"))
         self.label_2.setText(_translate("MainWindow", "Function"))
         self.checkBox.setText(_translate("MainWindow", "Select from File"))
         self.label_4.setText(_translate("MainWindow", "Number of Variables:"))

@@ -165,16 +165,16 @@ text-align: center;
     <widget class="QLabel" name="errorMsg">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>20</x>
        <y>60</y>
-       <width>291</width>
+       <width>411</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background: transparent;
 color:rgb(252, 1, 7);
-font-size: 16px;
+font-size: 18px;
 font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;</string>
      </property>
      <property name="text">
